@@ -21,13 +21,21 @@
 \usepackage{dsfont}
 
 
-\newtheorem{definicija}{Definicija}
-\newtheorem{trditev}{Trditev}
-\newtheorem{izrek}{Izrek}
-\newtheorem{posledica}{Posledica}
-\newtheorem{lema}{Lema}
-\newtheorem{zgled}{Zgled}
-\newtheorem{opomba}{Opomba}
+% ukazi za matematicna okolja
+\theoremstyle{definition} % tekst napisan pokoncno
+\newtheorem{definicija}{Definicija}[section]
+\newtheorem{primer}[definicija]{Primer}
+\newtheorem{zgled}[definicija]{Zgled}
+\newtheorem{opomba}[definicija]{Opomba}
+
+\renewcommand\endprimer{\hfill$\diamondsuit$}
+
+
+\theoremstyle{plain} % tekst napisan posevno
+\newtheorem{lema}[definicija]{Lema}
+\newtheorem{izrek}[definicija]{Izrek}
+\newtheorem{trditev}[definicija]{Trditev}
+\newtheorem{posledica}[definicija]{Posledica}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
@@ -83,29 +91,32 @@
                 \begin{enumerate}
                     \item $c^\Omega$ (zaprta za komplemente v $\Omega$) $\iff \forall A \in \mathcal{A} \Rightarrow \Omega \backslash A \in \mathcal{A} $
                     \item $\cap $ (zaprta za preseke) $\iff A \cap A' \in \mathcal{A}$ kadarkoli $\{A, A'\} \subset \mathcal{A}$
-                    \item $\cup$ (zaprta za unije) $iff A \cup A' \in \mathcal{A}$ kadarkoli $\{A, A'\} \subset \mathcal{A}$
+                    \item $\cup$ (zaprta za unije) $\iff  A \cup A' \in \mathcal{A}$ kadarkoli $\{A, A'\} \subset \mathcal{A}$
                     \item $\backslash$ (zaprta za razlike) $\iff A \backslash A' \in \mathcal{A}$ kadarkoli $\{A, A'\} \subset \mathcal{A}$
-                    \item $\sigma\cap$ (zaprta za stevne preseke) $\iff \forall (A_n)_{n \in \N} \in \mathcal{A}$ kadarkoli je $\left(A_n \right)_{n \in \N}$ zaporedje v $\mathcal{A}$
-                    \item $\sigma\cup$ (zaprta za stevne unije) $\iff \forall (A_n)_{n \in \N} \in \mathcal{A} $ kadarkoli je $\left(A_n \right)_{n \in \N}$ zaporedje v $\mathcal{A}$
+                    \item $\sigma\cap$ (zaprta za stevne preseke) $\iff \cap_{n \in \N}A_n \in \mathcal{A}$ kadarkoli je $\left(A_n \right)_{n \in \N}$ zaporedje v $\mathcal{A}$
+                    \item $\sigma\cup$ (zaprta za stevne unije) $\iff \cup_{n \in \N}A_n \in \mathcal{A} $ kadarkoli je $\left(A_n \right)_{n \in \N}$ zaporedje v $\mathcal{A}$
                 
                 \end{enumerate} 
             \end{definicija}
             
             \begin{definicija}($\sigma$-algebra, pod-$\sigma$-algebra in algebra)
                 \begin{enumerate}
-                    \item$\mathcal{A}$ je $\sigma$-algebra na $\Omega \iff (\Omega, A)$ je merljiv prostor $\iff \emptyset \in \mathcal{A}$ in $\mathcal{A}$ je zaprta za $c^\Omega$ in $\sigma\cup$. 
-                    \item Ce je $\mathcal{A} \sigma$-algebra na $\Omega$ potem: $A$ je $\mathcal{A}$-merljiva $\iff A \in \mathcal{A}; \mathcal{B}$ je pod-$\sigma$-algebra $\mathcal{A} \iff \mathcal{B} \subset \mathcal{A}$ in $\mathcal{B}$ je $\sigma$-algebra na $\Omega$.
+                    \item$\mathcal{A}$ je $\sigma$-algebra na $\Omega \iff (\Omega, \A)$ je merljiv prostor $\iff \emptyset \in \mathcal{A}$ in $\mathcal{A}$ je zaprta za $c^\Omega$ in $\sigma\cup$. e je $\mathcal{A} \ \sigma$-algebra na $\Omega$ potem: $A$ je $\mathcal{A}$-merljiva $\iff A \in \mathcal{A}.$
+                    \item $\mathcal{B}$ je pod-$\sigma$-algebra $\mathcal{A} \iff \mathcal{B} \subset \mathcal{A}$ in $\mathcal{B}$ je $\sigma$-algebra na $\Omega$.
                     \item $\mathcal{A}$ je algebra na $\Omega \iff \emptyset \in \mathcal{A}$ in $\mathcal{A}$ je zaprta za $c^\Omega$ in $\cup$.
                 \end{enumerate}
             \end{definicija}
 
+        \begin{opomba}
+            V primeru ko nimamo podane mnozice $\Omega$ lahko vzamemo $\Omega = \cup\A$ in velja $\A \subset 2^{\Omega}.$
+        \end{opomba}
 
         \begin{zgled}
             $2^\Omega$ je $\sigma$-algebra na $\Omega$ in $\{\emptyset, \Omega\}$ je $\sigma$-algebra na $\Omega$. Klicemo ju diskretna in trivialna $\sigma$-algebra.
         \end{zgled}
 
         \begin{zgled}
-        Naj bo $A \subset \Omega$ Potem je $ \sigma_\Omega A:=\{\emptyset, A, A^C, \Omega\}$ $\sigma$-algebra na $\Omega$.
+        Naj bo $A \subset \Omega$. Potem je $ \sigma_\Omega A:=\{\emptyset, A, A^C, \Omega\}$ $\sigma$-algebra na $\Omega$.
         \end{zgled}
 
         \begin{zgled}
@@ -131,9 +142,9 @@
             $$
             Zaprtost $\sigma$-algebre $A$ na $\Omega$ za:
             \begin{enumerate}
-                \item $\cap$: $A \cap B = A \cap B \cap \Omega \cap \Omega \cdots$
-                \item $\cup$: $A \cup B = A \cup B \cup \emptyset \cup \emptyset \cdots$
-                \item $\backslash$: $A \backslash B = A  \cap \left( \Omega \backslash B \right) \in A$
+                \item $\cap$: $A \cap B = A \cap B \cap \Omega \cap \Omega \cdots \in \A$
+                \item $\cup$: $A \cup B = A \cup B \cup \emptyset \cup \emptyset \cdots \in \A$
+                \item $\backslash$: $A \backslash B = A  \cap \left( \Omega \backslash B \right) \in \A$
             \end{enumerate}
 
         \end{proof}
@@ -144,7 +155,7 @@
                 $\mu$ je mera na $\left( \Omega, \F \right)$ natanko tedaj ko: 
                 \begin{enumerate}
                     \item $\mu(\emptyset) = 0$
-                    \item $\mu$ je stevno aditivna: $\forall (A_n)_{n \in \N} \subset \F$ paroma disjunktnih mnozic je $\mu(\cup_{n \in \N} A_n) = \sum_{n \in \N} \mu(A_n)$
+                    \item $\mu$ je stevno aditivna: za $\forall$ zaporedje $(A_n)_{n \in \N} \subset \F$ paroma disjunktnih mnozic je $\mu(\cup_{n \in \N} A_n) = \sum_{n \in \N} \mu(A_n)$
                 \end{enumerate}
             \end{definicija}
 
@@ -152,7 +163,7 @@
             \begin{enumerate}
                 \item koncna $\iff \mu(\Omega) < \infty$
                 \item verjetnostna mera $\iff \mu(\Omega) = 1$
-                \item $\sigma$-koncna $\iff \exists (A_n)_{n \in \N} \subset \F: \Omega = \cup_{m \in \N} A_m \ \text{in} \ \mu(A_n) < \infty \ \forall n \in \N$
+                \item $\sigma$-koncna $\iff \exists (A_n)_{n \in \N} \subset \F: \Omega = \cup_{n \in \N} A_n \ \text{in} \ \mu(A_n) < \infty \ \forall n \in \N$
             \end{enumerate}
 
             \begin{definicija}(Merljiv prostor)
@@ -167,7 +178,7 @@
                 \end{enumerate}
             \end{definicija}
 
-            Ce imamo neko lastnost $P(\omega)$ v $\omega \in A$, potem: \\
+            Ce imamo neko lastnost $P(\omega)$ v $\omega \in A$, potem: 
             \begin{enumerate}
                 \item $P(\omega)$ drzi $\mu$-skoraj povsod v $\omega \in A \iff A_{\neg P} := \{\omega \in A: \neg P(\omega)\}$ je $\mu$-zanemarljiva.       
                 \item $P(\omega)$ drzi $\mu$-skoraj gotovo v $\omega \in A \iff A_{\neg P} := \{\omega \in A: \neg P(\omega)\}$ je $\mu$-zanemarljiva in $\mu$ je verjetnost.
@@ -175,7 +186,7 @@
                 \item $P$ drzi $\mu$-s.g. na $A \iff P(\omega)$ drzi $\mu$-s.g. v $\omega \in A$. 
             \end{enumerate}
             \begin{zgled}
-                Nicelna mera na $\F$ torej preslikava $\mu(A) \rightarrow 0 \ \forall A \in \F$ je vedno mera na katerikoli $\sigma$-algebri.
+                Nicelna mera na $\F$ (torej preslikava $\mu(A) \rightarrow 0, \ \forall A \in \F)$ je vedno mera na katerikoli $\sigma$-algebri.
             \end{zgled}      
             
             \begin{zgled}
@@ -189,7 +200,7 @@
             \begin{trditev}(Lastnosti mere)
                 Naj bo $\mu$ mera na merljivem prostoru $\left( \Omega, \F \right)$. Potem velja naslednje:
                 \begin{enumerate}
-                    \item $\mu$ je aditivna: $\mu(A \cup B) = \mu(A) + \mu(B)$ ce velja $A \cap B = \emptyset$ in $\{A, B\} \in \F$.
+                    \item $\mu$ je aditivna: $\mu(A \cup B) = \mu(A) + \mu(B)$ kadarkoli $A \cap B = \emptyset$ in $\{A, B\} \in \F$.
                     \item $\mu$ je monotona: $A \subset B$ in $ \{A, B\} \in \F$ $ \Rightarrow \mu(A) \leq \mu(B)$.
                     \item $\mu$ je zvezna od spodaj: $\mu(\cup_{n \in \N}A_n) = \uparrow\text{-}\lim_{n \rightarrow \infty}\mu(A_n)$ kadarkoli je $(A_n)_{n \in \N}$ narascajoce zaporedje v $\F$.
                     \item $\mu$ je stevno subaditivna: $\mu(\cup_{n \in \N}A_n) \leq \sum_{n \in \N}\mu(A_n)$ kadarkoli je $(A_n)_{n \in \N}$ zaporedje v $\F$.
@@ -200,11 +211,11 @@
 
             \begin{proof}
                 \begin{enumerate}
-                    \item $\left(A, B, \emptyset, \emptyset, \cdots \right)$ je zaporedje medseboj disjunktnih mnozic v $\F$.
+                    \item $\left(A, B, \emptyset, \emptyset, \cdots \right)$ je zaporedje medseboj disjunktnih mnozic v $\F$, torej po stevni aditivnosti velja $\mu(A \cup B \cup \emptyset \cup \cdots) = \mu(A) + \mu(B) + \mu(\emptyset) + \cdots = \mu(A) + \mu(B)$.
                     \item $B = A \cup (B \backslash A)$ in uporabimo koncno aditivnost (1.).
                     \item $\left(A_1, A_2\backslash A_1, A_3\backslash A_2, \cdots \right)$ je zaporedje paroma disjunktnih mnozic v $\F$ z unijo $\cup_{n \in \N}A_n$. Uporabimo stevno aditivnost in za tem se koncno aditivnost.
                     \item $\left(A_1, A_2\backslash A_1, A_3\backslash (A_1 \cup A_2), \cdots \right)$ je zaporedje paroma disjunktnih mnozic v $\F$ z unijo $\cup_{n \in \N}A_n$. Uporabimo stevno aditivnost in za tem se monotonost (2.).
-                    \item Prvi del sledi iz koncne aditivnosti (1.). Za mnozici vzamemo $A \in \Omega$ in  $B = \Omega \backslash A$. Dobimo $\mu(\Omega) = \mu(A) + \mu(\Omega \backslash A)$. Drugi del sledi iz zveznosti od spodaj (3.) tako da jo uporabimo na $\left(\Omega\backslash A_n \right)_{n \in \N}$.
+                    \item Prvi del sledi iz koncne aditivnosti (1.). Za mnozici vzamemo $A \in \Omega$ in  $B = \Omega \backslash A$. Dobimo $\mu(\Omega) = \mu(A) + \mu(\Omega \backslash A)$. Drugi del sledi iz zveznosti od spodaj (3.) tako da jo uporabimo na $\left(\Omega\backslash A_n \right)_{n \in \N}$. $\mu(\Omega) - \mu(\cap_{n \in \N}A_n) = \mu\left( \cup_{n \in \N}\Omega\backslash A_n\right) = \lim_{n \rightarrow \infty}\mu(\Omega\backslash A_n) = $ $\lim_{n \rightarrow \infty}\mu(\Omega) - \mu(A_n) = \mu(\Omega) - \lim_{n \rightarrow \infty}\mu(A_n)$ $ \Rightarrow \mu(\cap_{n \in \N}A_n) = \lim_{n \rightarrow \infty}\mu(A_n).$
                     \item Preveriti moramo, da je $\F|_A$ $\sigma$-algebra na $A$. Kasneje bomo videli da je $\F|_A = 2^A \cap \F$ in bo dokaz sledil iz tega.
                 \end{enumerate}
             \end{proof}
@@ -212,6 +223,11 @@
             \begin{zgled}(Borel-Cantellijeva lema)
                 Naj bo $\left( \Omega, \F, \mu \right)$ merljiv prostor in $(A_n)_{n \in \N}$ zaporedje v $\F$, da velja $\sum_{n \in \N}\mu(A_n) < \infty$. Potem je $\mu(\limsup_{n \rightarrow \infty}A_n) = 0$.
             \end{zgled}
+
+            \begin{proof}
+                
+            \end{proof}
+
             \begin{zgled}
                 Ce je $P$ vejretnost na $\left( \Omega, \F \right)$, potem je $P^{-1}(\{0, 1\})$ pod-$\sigma$-algebra na $\F$. Tako imenovana $P$-trivialna $\sigma$-algebra.
             \end{zgled}
@@ -219,15 +235,15 @@
         \subsubsection{Merjlive preslikave in generirane $\sigma$-algebre}
             
             \begin{definicija}(Generirana $\sigma$-algebra)
-                Naj bo $\A \subset 2^\Omega$; potem $$\sigma_\Omega(\A):=\cap\{\F \in 2^{2^\Omega}: \F \ \text{je} \ \sigma\text{-algebra na} \ \Omega \ \text{in} \ \A \subset \F \}$$ imenujemo $\sigma$-algebra generirana na $\Omega$ z $\A$.
+                Naj bo $\A \subset 2^\Omega$; potem $$\sigma_\Omega(\A):=\cap\{\F \in 2^{2^\Omega}: \F \ \text{je} \ \sigma\text{-algebra na} \ \Omega \ \text{in} \ \A \subset \F \}$$ imenujemo $\sigma$-algebra generirana na $\Omega$ z $\A$. Je najmanjsa $\sigma$-algebra, ki vkljucuje druzino podmnozic $\A$.
             \end{definicija}
 
             \begin{opomba}
                 $2^\Omega$ je gotovo $\sigma$-algebra na $\Omega$, ki vsebuje $\A$, torej je $\sigma_\Omega(\A)$ neprazna.
             \end{opomba}
 
-            Za dve $\sigma$-algebri $\mathcal{B}_1$ in $\mathcal{B}_2$ na $\Omega$ je mnozica $\mathcal{B}_1 \vee \mathcal{B}_2 := \sigma_\Omega\left(\mathcal{B}_1 \cup \mathcal{B}_2\right)$ zdruzitev $\mathcal{B}_1$ in $\mathcal{B}_2$. Bolj splosno
-            za druzino $\left(\mathcal{B}_\lambda\right)_{\lambda \in \Lambda} \sigma$-algeber na $\Omega$ pravimo $\vee_{\lambda \in \Lambda}\mathcal{B}_\lambda := \sigma_\Omega\left(\cup_{\lambda \in \Lambda}\mathcal{B}_\lambda\right)$ druzina druzin.
+            Za dve $\sigma$-algebri $\mathcal{B}_1$ in $\mathcal{B}_2$ na $\Omega$ je mnozica $\mathcal{B}_1 \vee \mathcal{B}_2 := \sigma_\Omega\left(\mathcal{B}_1 \cup \mathcal{B}_2\right)$ skupek $\mathcal{B}_1$ in $\mathcal{B}_2$. Bolj splosno
+            za druzino $\left(\mathcal{B}_\lambda\right)_{\lambda \in \Lambda} \sigma$-algeber na $\Omega$ pravimo, da je $\vee_{\lambda \in \Lambda}\mathcal{B}_\lambda := \sigma_\Omega\left(\cup_{\lambda \in \Lambda}\mathcal{B}_\lambda\right)$ njen skupek.
 
             \begin{opomba}
                 Razlog zakaj so generirane $\sigma$-algebre pomembne v teoriji mere je, ker le redko lahko eksplicitno
@@ -235,10 +251,10 @@
             \end{opomba}
 
             \begin{definicija}(Zacetna in koncna struktura)
-                Naj bo $f:\Omega \rightarrow \Omega'$. Za podano $\sigma$-algebro $\F'$ na $\Omega'$  deifniramo $$\sigma^{\F'}(f):= f^{-1}(\F'):=\{f^{-1}(A'):A' \in \F'\},$$
+                Naj bo $f:\Omega \rightarrow \Omega'$. Za podano $\sigma$-algebro $\F'$ na $\Omega'$  definiramo $$\sigma^{\F'}(f):= f^{-1}(\F'):=\{f^{-1}(A'):A' \in \F'\},$$
                 zacetno strukturo za $f$ glede na $\F'$. (oziroma $\sigma$-algebra generirana z $f$ glede na $\F'$).
 
-                Za podano $\sigma$-algebro $\F$ na $\Omega$ definiramo $$\sigma^{\Omega'}_{\F}(f):=\{A \in 2^{\Omega'}: f^{-1}(A') \in \F\},$$
+                Za podano $\sigma$-algebro $\F$ na $\Omega$ definiramo $$\sigma^{\Omega'}_{\F}(f):=\{A' \in 2^{\Omega'}: f^{-1}(A') \in \F\},$$
                 koncno strukturo za $f$ na $\Omega'$ glede na $\F$.
             \end{definicija}
 
@@ -250,12 +266,12 @@
                 \begin{enumerate}
                     \item V notacijah $\sigma_\Omega(\A)$ in $\sigma^{\F'}(f)$ spuscamo $\Omega$ in $\F'$ kadar je to jasno iz konteksta. Torej pisemo preprosto $\sigma(\A)$ in $\sigma(f)$.
                     \item V primeru ko je zaloga vrednosti $f$ stevna in nimamo podane ne $\F'$ ali $\Omega'$ za $\Omega'$ vazamemo $Z_f$ in za $\F'$ vazamemo $2^{\Omega'}$.
-                    \item Izmed objektov, ki smo ju uvedli v definiciji 7 je zacetna struktura veliko bolj pomembna
+                    \item Izmed objektov, ki smo ju uvedli v definiciji 7. je zacetna struktura bolj sugestivna.
                 \end{enumerate}
             \end{opomba}
 
             \begin{definicija}
-                Za dano $\sigma$-algebro $\F$ na $\Omega$ in $\F'$ na $\Omega'$ definiramo $$\F/\F':= \{g \in \Omega'^\Omega: g \ \text{je} \ \F/\F'\text{-merljiva}\}$$.
+                Za dano $\sigma$-algebro $\F$ na $\Omega$ in $\F'$ na $\Omega'$ definiramo $$\F/\F':= \{g \in \Omega'^\Omega: g \ \text{je} \ \F/\F'\text{-merljiva}\}.$$
             \end{definicija}
 
             \begin{zgled}
@@ -263,17 +279,17 @@
             \end{zgled}
 
             \begin{definicija}(Indikator)
-                Za $A \in \Omega$ definiramo $\mathds{1}_{A_\Omega}:\Omega\rightarrow\{0, 1\}$:
+                Za $A \subset \Omega$ definiramo $\mathds{1}_{A_\Omega}:\Omega\rightarrow\{0, 1\}$:
                 $$\mathds{1}_{A_\Omega}(x) := 
                     \begin{cases}
                         1, & \ x \in A \\
                         0, & \text{sicer}
                     \end{cases}$$
-                Funkciji pravimo indikator mnozice $A$ z underlying prostorom $\Omega$. Pisali bomo $\mathds{1}_A$ in predvidevali da se $\Omega$ da razbrati iz konteksta.
+                Funkciji pravimo indikator mnozice $A$ v $\Omega$. Pisali bomo $\mathds{1}_A$ in predvidevali da se $\Omega$ da razbrati iz konteksta.
             \end{definicija}
 
             \begin{zgled}
-                Naj bo $A \subset \Omega$. Potem $\sigma^{2^{\{0, 1\}}}(\mathds{1}_A) = \sigma_\Omega A$. Ce je nadaljno $\F$ $\sigma$-algebra an $\Omega$ potem je  $\mathds{1}_A \in \F/2^{\{0, 1\}} \iff A \in \F$ 
+                Naj bo $A \subset \Omega$. Potem $\sigma^{2^{\{0, 1\}}}(\mathds{1}_A) = \sigma_\Omega (A) = \{\emptyset, \Omega, A, \Omega\backslash A\}$. Ce je nadaljno $\F$ $\sigma$-algebra an $\Omega$ potem je  $\mathds{1}_A \in \F/2^{\{0, 1\}} \iff A \in \F$ 
             \end{zgled}
 
             \begin{trditev}
@@ -281,30 +297,66 @@
             \end{trditev}
 
             \begin{proof}
-                $(g \circ f)^{-1}(H) = f^{-1}(g^{-1}(H))$ za $H$ $\in \mathcal{H}$
+                $(g \circ f)^{-1}(H) = f^{-1}(g^{-1}(H))$ za $\forall H$ $\in \mathcal{H}$
             \end{proof}
 
             \begin{trditev} (Lastnosti preslikav)
                 Naj bo $f: \Omega \rightarrow \Omega'$.
                 \begin{enumerate}
-                    \item Naj bo $\F'$ $\sigma$-algebra na $\Omega'$. $\sigma^{\F'}(f)$ je $\sigma$-algebra na $\Omega$; je najmanjsa $\sigma$-algebra $\mathcal{G}$ na $\Omega$ da velja $f \in \mathcal{G}/\F'$.
-                    \item Naj bo $\F$ $\sigma$-algebra na $\Omega$. $\sigma_{\F}^{\Omega'}(f)$ je $\sigma$-algebra na $\Omega'$; je najvecja $\sigma$-algebra $\mathcal{G}'$ na $\Omega'$ da velja $f \in \mathcal{G}'/\F'$.
+                    \item Naj bo $\F'$ $\sigma$-algebra na $\Omega'$. $\sigma^{\F'}(f)$ je $\sigma$-algebra na $\Omega$; je najmanjsa $\sigma$-algebra $\mathcal{F}$ na $\Omega$ da velja $f \in \mathcal{F}/\F'$.
+                    \item Naj bo $\F$ $\sigma$-algebra na $\Omega$. $\sigma_{\F}^{\Omega'}(f)$ je $\sigma$-algebra na $\Omega'$; je najvecja $\sigma$-algebra $\mathcal{F}'$ na $\Omega'$ da velja $f \in \mathcal{F}/\F'$.
                     \item Naj bo $\F'$ $\sigma$-algebra na $\Omega'$ in $\F$ $\sigma$-algebra na $\Omega$, potem $f \in \F/\F' \iff \sigma^{\F'}(f) \subset \F \iff \sigma_{\F}^{\Omega'}(f) \supset \F'.$
-                    \item Naj bo $\A' \subset 2^{\Omega'}$. $\sigma_{\Omega'}(\A')$ je najmanjsa $\sigma$-algebra na $\Omega'$, ki ima $\A'$ za svojo podmnozico. Naj bo $\F$ $\sigma$-algebra na $\Omega$, potem je $f \in \F/\sigma_{\Omega'}(\A') \iff (f^{-1}(A') \in \F$ za vse $A' \in \A'$). Natancno zapisemo $\sigma^{\sigma_{\Omega'}(\A')}(f) = \sigma_\Omega(\{f^{-1}(A'):A' \in \A'\})$
+                    \item Naj bo $\A' \subset 2^{\Omega'}$. $\sigma_{\Omega'}(\A')$ je najmanjsa $\sigma$-algebra na $\Omega'$, ki ima $\A'$ za svojo podmnozico. Naj bo $\F$ $\sigma$-algebra na $\Omega$, potem je $f \in \F/\sigma_{\Omega'}(\A') \iff (f^{-1}(A') \in \F$ za vse $A' \in \A'$). Natancno zapisemo $\sigma^{\sigma_{\Omega'}(\A')}(f) = \sigma_\Omega(\{f^{-1}(A'):A' \in \A'\})$. V posebnem je $f^{-1}(\sigma_{\Omega '}(\A ')) = \sigma_{\Omega}(f^{-1}(\A').$
                 \end{enumerate}
             \end{trditev}
 
             \begin{proof}
                 \begin{enumerate}
-                    \item nothing
+                    \item $f^{-1}(\F')$ je $\sigma$-algebra na $\Omega$: $\forall \emptyset : f^{-1}(\emptyset) \in f^{-1}(\F');$ za $A'\in \F'$ je $\Omega \backslash f^{-1}(A') = f^{-1}(\Omega \backslash A') \in f^{-1}{\F'};$ za zaporedje $(A_i)_{i \in \N}$ je $\cup_{i \in \N}f^{-1}(A_i') = f^{-1}(\cup_{i \in \N}A_i') \in f^{-1}(\F').$ Drugi del je jasen
+                    \item Podoben dokaz kot 1.
+                    \item krneki
+                    \item prvi del je jasen. Drugi del: $(\Rightarrow):$ je jasna. $(\Leftarrow):$ $\sigma_{\F}^{\Omega '}(f) \subset A'...$ napisi s skripte.
                 \end{enumerate}
             \end{proof}
 
             \begin{opomba}
-                Tocka 4 nam pove da je dovolj da dokazemo  merljivo lastnost na mnozici generatorjev. Se en nacin zapisa $f \in \F/\sigma_{\Omega'}(\A') \iff (f^{-1}(A') \in \F$ za vse $A' \in \A'$). Natancno zapisemo $\sigma^{\sigma_{\Omega'}(\A')}(f) = \sigma_\Omega(\{f^{-1}(A'):A' \in \A'\})$ je $f^{-1}(\sigma_{\Omega'}(\A')) = \sigma_\Omega(f^{-1}(\A'))$, kar bomo interpretirali lpt operacija dobivanja praslik in generiranih $\sigma$-algeber komutirati.
+                Tocka 4 nam pove da je dovolj da dokazemo  merljivo lastnost na mnozici generatorjev. Se en nacin zapisa $f \in \F/\sigma_{\Omega'}(\A') \iff (f^{-1}(A') \in \F$ za vse $A' \in \A'$). Natancno zapisemo $\sigma^{\sigma_{\Omega'}(\A')}(f) = \sigma_\Omega(\{f^{-1}(A'):A' \in \A'\})$ je $f^{-1}(\sigma_{\Omega'}(\A')) = \sigma_\Omega(f^{-1}(\A'))$, kar bomo interpretirali kot operacija dobivanja praslik in generiranih $\sigma$-algeber komutirati.
             \end{opomba}
 
             \begin{definicija}
                 Pisemo $\A|_A := \{A'\cap A : A'\in \A\}$ za sled $\A$ na $A$.
             \end{definicija}
+
+            \begin{opomba}
+                Ce je $\F$ zaprta za $\cap$ in $A \in \F$, potem je $\F|_A = \F \cap 2^A$.
+            \end{opomba}
+
+            \begin{posledica}
+                Naj bo $\A \subset 2^\Omega$. Ce je $A \subset \Omega$, potem $$ \sigma_\Omega(\A)|_A = \sigma_A(\A|_A);$$ v primeru ce je $\A$ $\sigma$-algebra na $\Omega$, potem je $\A|_A$ $\sigma$-algebra na $A$.
+            \end{posledica}
+
+            \begin{proof}
+                Po prejsnji trditvi (1. tocka) je $\sigma_\Omega(\A)|_A = \sigma^{\sigma_\Omega(\A)}(id_A)$ $\sigma$-algebra na $A$ ki vsebuje $\A|_A$, torej velja $\sigma_A(\A|_A) \subset \sigma_\Omega(\A|_A).$ Po (2.tocki) je $\mathcal{C} := \{ C \in 2^\Omega: C \cap A \in \sigma_A(\A|_A)\} = \sigma_{\sigma_A(\A|_A)}^\Omega(id_A)$ $\sigma$-algebra na $\Omega$, ki vsebuje $\A$, torej $\sigma_\Omega(\A) \subset \mathcal{C}$, torej $\sigma_\Omega(\A)|_A \subset \sigma_A(\A|_A).$
+
+            \end{proof}
+
+            \begin{zgled}
+                Prepricaj se da je v zgledu 1.3 $\sigma_\Omega A = \sigma_\Omega(\{A\}).$
+            \end{zgled}
+
+            \begin{zgled}
+                 
+            \end{zgled}
+
+            \begin{zgled}
+                ...
+            \end{zgled}
+
+            \begin{opomba}
+                Kako lahko v sposnem dolocimo $\sigma_\Omega(\A)$? Zacnemo z $\A$ karkoli kar mora biti v $\sigma_\Omega(\A)$ da zadosca pogojem $\sigma$-algebre, vse komplemente, stevne unije, $\emptyset$, $\Omega$ in stevne unije teh itd. Po tem postopku dokazemo, da je to kar imamo $\sigma$-algebra.
+            \end{opomba}
+
+            \begin{zgled}
+                Naj bosta $\{E, F\} \subset 2^\Omega.$ Potem mora $\sigma_\Omega(\{E, F\})$ vsebovati $\{\emptyset, E, F, E\emptyset F, E \cap F, \cdots\}$ oziroma tako imenovano particijo $\mathcal{P} := \{E \cap \}$
+            \end{zgled}
 \end{document}
