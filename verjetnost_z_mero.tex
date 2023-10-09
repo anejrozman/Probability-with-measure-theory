@@ -357,6 +357,53 @@
             \end{opomba}
 
             \begin{zgled}
-                Naj bosta $\{E, F\} \subset 2^\Omega.$ Potem mora $\sigma_\Omega(\{E, F\})$ vsebovati $\{\emptyset, E, F, E\emptyset F, E \cap F, \cdots\}$ oziroma tako imenovano particijo $\mathcal{P} := \{E \cap \}$
+                Naj bosta $\{E, F\} \subset 2^\Omega.$ Potem mora $\sigma_\Omega(\{E, F\})$ vsebovati $\{\emptyset, E, F, E\backslash F, E \cap F, \cdots\}$ (Particije na $\Omega$ inducirane z $E, F$). Torej $\sigma_\Omega(\{E, F\}) \supset \sigma_{\Omega}(\mathcal{P})$. Ampak $\sigma_{\Omega}(\mathcal{P})$ je $\sigma$-algebra na $\Omega$, ki vsebuje $\{E, F\}$, torej $\sigma_\Omega(\{E, F\}) = \sigma_{\Omega}(\mathcal{P}) = \sigma\mathcal{P}$ iz zgleda 1.8.
+            \end{zgled}
+
+            \begin{trditev}
+                Naj bo $f:\Omega \rightarrow \Omega'$ in naj bo $\F$ $\sigma$-algebra na $\Omega$ ter $\F'$ $\sigma$-algebra na $\Omega'$.
+                \begin{enumerate}
+                    \item Ce je $A' \subset \Omega$ taksna, da $f:\Omega \rightarrow A'$, potem je $f \in \F/\F'$ natanko tedaj ko je $f \in \F/(\F'|_{A'})$.
+                    \item Za $A \subset \Omega$, ce je $f \in \F/\F'$, je $f|_{A} \in (\F|_A)/\F'$.
+                    \item Ce za zaporedje $(A_i)_{i \in \N}$ v $\F$, az katerega je $\Omega = \cup_{i \in \N}A_i$, velja $f|A_{i} \in (\F|_{A_{i}})/\F'$ za vsak $i \in \N$, potem $f \in \F/\F'$.
+                \end{enumerate}
+            \end{trditev}
+
+            \begin{proof}
+                \begin{enumerate}
+                    \item Za $H'\in \F'$ je $f^{-1}(H') = f^{-1}(H'\cap A').$
+                    \item Za $F' \in \F'$ je $(f|_A)^{-1}(F') = A \cap f^{-1}(F') \in \F|_A$.
+                    \item Za $F'\in \F'$ je $f^{-1}(F') = \cup_{i \in \N}f^{-1}(F')\cap A_i \underbrace{=}_{\cup_{i \in \N}A_i = \Omega} \cup_{i \in \N}\underbrace{(f|_{A_i})^{-1}(F')}_{\in \F|_{A_i} = \F\cap 2^{A_i} \subset \F}$
+                \end{enumerate}
+            \end{proof}
+
+            \begin{opomba}
+                Tocki 1. in 2. pomenita da se merljivost obnasa lepo pod omejitvami. Tocka 3. pa nam pove da je lahko merljivost preverjena "lokalno". 
+            \end{opomba}
+
+        \subsubsection{Borelove mnozice na razsirjeni realni osi in Borelova merljivost numericnih funkcij}   
+            \begin{definicija}
+                Naj bo $[-\infty, \infty] := \R \cup \{-\infty, \infty\}$ razsirjena realna os, opremljena z naravno relacijo $\leq$. Vpeljemo druzino mnozic $\mathcal{B}_{[-\infty, \infty]}:= \sigma_{[-\infty, \infty]}(\{[-\infty, a]:a \in \R\})$, ki ji pravimo Borelova $\sigma$-algebra na $[-\infty, \infty]$. Za $A \subset [-\infty, \infty]$ vpeljemo druzino mnozic $\mathcal{B}_A = \mathcal{B}_{[-\infty, \infty]}|_A$, ki ji pravimo Borelova $\sigma$-algebra na $A$. 
+            \end{definicija}
+
+            \begin{opomba}
+                Z $\mathcal{B}_\R$ oznacimo Lebesquovo mero. Funkcije, ki so merljive glede na $\mathcal{B}_{[-\infty, \infty]}$ na kodomeni, so nekako natanko tiste, ki se "lepo" obnasajo s stalisca integracije. Pričakovanje tega, kar sledi, nam je všeč tudi zato, ker na $(\R, \mathcal{B}_\R)$ lahko definiramo prijetno — netrivialno translacijsko invariantno — tako imenovano Lebesquovo mero. Prav tako lahko trdimo, da je reči, da je numerična preslikava $f$ merljiva (z vidika merjenja zanimiva), treba vsaj izmeriti množice $\{f \leq a\}:= f^{-1}{[-\infty, a]}$ za vsak $a \in \R$ (zlasti, ob malce predvidevanju vsebine drugega dela teh zapisov, za naključno spremenljivko $X$ bi želeli biti sposobni reči, kaj je verjetnost dogodkov $\{X \leq a\}$ za $a \in \R$).
+            \end{opomba}
+
+            \begin{zgled}
+                Vsi intervali in stevne podmnozice $[-\infty, \infty]$ pripadajo $\mathcal{B}_{[-\infty, \infty]}$. Prav tako vse zaprte in odprte podmnozice $[-\infty, \infty]$ pripadajo $\mathcal{B}_{[-\infty, \infty]}$. Ce je $A \subset [-\infty, \infty]$ stevna, potem je $\mathcal{B}_A = 2^A.$
+            \end{zgled}
+        
+            \begin{definicija}
+                Ce $f$ slika v $[-\infty, \infty]$ (je numericna), potem: 
+                \begin{enumerate}
+                    \item $\sigma(f) = \sigma^{\mathcal{B}_{[-\infty, \infty]}}(f)$.
+                    \item Za $\sigma$-algebro $\F$ na $D_f$ recemo da $f$ je  $\F$-merljiva $\iff f \in \F/\mathcal{B}_{[-\infty, \infty]}$.
+                    \item Za $g:D_f \rightarrow [-\infty, \infty]; g \land f :=$ min$\{g, f\}$,  $g \lor f:=$ max$\{g, f\}$, $f^+:=$ max$\{f, 0\}$ in  $f^-:=$ max$\{-f, 0\}$.
+                \end{enumerate}
+            \end{definicija}
+
+            \begin{zgled}
+                    $\mathcal{B}_\R = \sigma_\R(\{(-\infty, a]: a \in \R\})$. Posledicno po trditvah 1.29 in 1.39 za $\sigma$-algebro $\F$ na $\Omega$ in $f:\Omega \rightarrow \R$, $f$ Borelovo merljiva $\iff$ $f \in \F/\mathcal{B}_\R \iff \{f \leq a\}:= f^{-1}((-\infty, a]) \in \F$ za $\forall a \in \R.$
             \end{zgled}
 \end{document}
