@@ -406,4 +406,241 @@
             \begin{zgled}
                     $\mathcal{B}_\R = \sigma_\R(\{(-\infty, a]: a \in \R\})$. Posledicno po trditvah 1.29 in 1.39 za $\sigma$-algebro $\F$ na $\Omega$ in $f:\Omega \rightarrow \R$, $f$ Borelovo merljiva $\iff$ $f \in \F/\mathcal{B}_\R \iff \{f \leq a\}:= f^{-1}((-\infty, a]) \in \F$ za $\forall a \in \R.$
             \end{zgled}
+
+            \begin{definicija}
+                 \begin{enumerate}
+                    \item $0\cdot (+-\infty) := 0$
+                    \item $\infty + (-\infty) := 0$
+                 \end{enumerate}
+                 Preostsanek aritmetike v $[-\infty, \infty]$ vpeljemo naravno, npr. $a \cdot \infty = sgn(a)\infty$ za $a \in [-\infty, \infty]\backslash\{0\}$, $a + \infty = \infty$ itd.
+            \end{definicija}
+
+            \begin{trditev}
+                Za $A \subset [-\infty, \infty]$ in $f:A \rightarrow [-\infty, \infty]$ zvezna ter $f \in \mathcal{B}_A\backslash\mathcal{B}_{[-\infty, \infty]}.$ Ce je $\F$ $\sigma$-algebra 
+                in $\{f, g\} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]},$ potem je $\{f+g, fg\} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]}$ in $\{\{f=g\}, \{f\subset g\}, \{f \leq g\}\} \subset \F$.
+            \end{trditev}
+
+            \begin{proof}
+                Brez dokaza.
+            \end{proof}
+
+            \begin{trditev}
+                Naj bo $\F$ $\sigma$-algebra in $\left(f_n\right)_{n \in \N}$ zaporedje v $\F\backslash\mathcal{B}_{[-\infty, \infty]}.$
+                Potem je $$\{sup_{n \in \N}f_n, inf_{n \in \N}f_n, limsup_{n \rightarrow \infty}f_n, liminf_{n \rightarrow \infty}f_n \} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]}.$$
+                Ce je $f_n \geq 0$ za $n \in \N$, je $\sum_{n \in \N}f_n \in \F\backslash\mathcal{B}_{[0, \infty]}.$
+            \end{trditev}
+
+            \begin{proof}
+                $\mathcal{B}_{[-\infty, \infty]} = \sigma_{[-\infty, \infty]}(\{[-\infty, a]: a\in\R\})$. Za $a \in \R$ 
+                $\left(sup_{n \in \N}f_n\right)^{-1}\left([-\infty, a]\right) = \{sup_{n \in \N}f_n \leq a\} = \{f_n \leq a \ \forall n \in \N\} =
+                 \cap_{n \in \N}{f_n \leq a}= \cap_{n \in \N}\underbrace{f_n^{-1}([-\infty, a])}_{\in \F \because f_n \in \F\backslash\mathcal{B}_{[-\infty, \infty]}}$
+                 Da je $inf_{n \in \N}f_n \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ utemeljimo tako, da zapisemo $inf_{n \in \N} = -sup_{n \in \N} - f_n$ in opazimo, da je $-id_{[-\infty, \infty]} \in \mathcal{B}_{[-\infty, \infty]}\backslash\mathcal{B}_{[-\infty, \infty]}$
+                 limsup in liminf sta kombinaciji sup in inf. Koncno v primeru, da je $f_n \geq 0$ $\forall n \in \N$ je $\sum_{n\in\N}f_n = \lim_{n \rightarrow \infty}\sum_{k = 1}^{n}f_k = limsup_{n \rightarrow \infty}\underbrace{\sum_{k = 1}^nf_k}_{\in \F\backslash\mathcal{B}_{[-\infty, \infty]} po trditvi 1.36}$
+                 Kar nam da ...
+            \end{proof}
+
+            \begin{posledica}
+                Naj bo $\F$ $\sigma$-algebra, potem je $\{max(f, g), min(f, g), f^+, f^-, |f|\} \subset \F\mathcal{B}_{[-\infty, \infty]}$ za $\{f, g\} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]}.$ Poleg tega je 
+                $\{\{f_n \text{konvergira, ko gre} \ n \rightarrow \infty\}, \{f_n \text{konvergira, k vrednosti iz} \ \R \text{ko gre} \ n \rightarrow \infty\}, \{\lim_{n \rightarrow \infty}f_n = f_0\}\} \subset \F$ za vsako
+                zaporedje $(f_n)_{n \in \N_0}$ v $\F\backslash\mathcal{B}_{[-\infty, \infty]}.$
+            \end{posledica}
+
+            \begin{proof}
+                Brez dokaza.
+            \end{proof}
+
+            \begin{zgled}
+                Naj $f:\R \rightarrow \R$ ... Poglej v skripto. Pac primer kako ta trditev deluje.
+            \end{zgled}
+
+        \subsubsection{Argumenti monotonega razreda}
+            IDEJA: Zelimo dokazati tridtev, ki se tice vseh funkcij iz $\F\backslash\mathcal{B}_{[-\infty, \infty]}.$ Najprej pokazemo trditev za 
+            $\mathds{1}_A, A \in \F$. $\rightarrow$ izrek o monotonem razredu $\rightarrow$ trditev velja v splosnem.
+
+            \begin{definicija}
+                Naj bo $\F$ $\sigma$-algebra na $\Omega$ in $f:\rightarrow [0, \infty]$.
+                f je $\F$-enostavna $\iff$ $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ in $\mathcal{Z}_f$ je koncna.
+            \end{definicija}
+
+            \begin{trditev}
+                Naj bo $(\Omega, \F)$ merljiv prostor in $f:\Omega\rightarrow [0, \infty]$. $f$ je $\F$-enostavna $\iff$
+                $f = \sum_{i = 1}^{n}c_i\mathds{1}_{A_i}$ za neke $c_i \in [0, \infty), A_i \in \F, i \in [n]$ za nek $n \in \N$. Naprej, ce je $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]},$
+                potem je $min\left(2^{-n}[2^nf], n\right)_{n \in \N}$ zaporedje $\F$-enostavnih funkcij, ki narascajo proti ($\uparrow$) $f$. (Celo enakomerno na vsaki mnozici na kateri je $f$ omejena).
+            \end{trditev}
+
+            \begin{proof}
+                $(\Rightarrow):$ $f = \sum_{\mathcal{Z}\backslash\{0\}}a\cdot\mathds{1}_{\{f = a\}}, \{f = a\}$ pomeni $f^{-1}(\{a\}) \in \F.$
+                $(\Leftarrow):$ Baje da je ocitno
+                Drugi del je jasen.
+            \end{proof}
+
+            \begin{opomba}
+                \begin{enumerate}
+                    \item $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]} \iff f = 1 -$ $\F$-enostavnih funkcij.
+                    \item $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]} \iff f =$ limita linearnih kombinacij indikatorjev mnozic iz $\F$.
+                \end{enumerate}
+
+            \end{opomba}
+
+            \begin{posledica}(izrek o monotonem razredu)
+                Naj bo $\F$ $\sigma$-algebra in $\mathcal{M} \subset \F\backslash\mathcal{B}_{[0, \infty]}.$ Ce velja
+                \begin{enumerate}
+                    \item $\mathds{1}_A \in \mathcal{M} \ \forall A \in \F$
+                    \item $\mathcal{M}$ je konveksen stozec; tj. $af + g \in \mathcal{M} \ \forall a \in [0, \infty] \ \forall f \in \mathcal{M} \ \forall g \in \mathcal{M}$
+                    \item $\mathcal{M}$ zaprt za $\uparrow$ limite; tj. $\lim_{n \rightarrow \infty}f_n \in \mathcal{M} \ \forall$ zaporedje $(f_n)_{n \in \N} $ v $\mathcal{M}$
+                \end{enumerate}
+                Potem je $\mathcal{M} =  \F\backslash\mathcal{B}_{[-\infty, \infty]}.$
+            \end{posledica}
+
+            \begin{proof}
+                Po 1. in 2. $\mathcal{M}$ vsebuje vse $\F$-enostavne funkcije. Vsaka funckija iz $\F\backslash\mathcal{B}_{[-\infty, \infty]}$ je po trditvi 1.41 
+                $\uparrow$-limita $\F$-enostvnih funkcij in zato pripada $\mathcal{M}$ po 3.
+            \end{proof}
+
+            \begin{trditev}
+                (Doob-Dynkinova faktorizacijska lema)
+                Naj bo $X:\Omega \rightarrow A$ in  $(A, \A)$ merljiv prostor. Potem je 
+                $Y \in X^{-1}(\A)\backslash\mathcal{B}_{[-\infty, \infty]} \iff \left(\exists h \in \A\backslash\mathcal{B}_{[-\infty, \infty]}, da je Y = \underbrace{h \circ X}_{h(X)}\right).$  
+            \end{trditev}
+
+            \begin{proof}
+                $(\Leftarrow):$ $X \in X^{-1}(\A)\backslash\A$ in $h \in \A\backslash\mathcal{B}_{[-\infty, \infty]} \Rightarrow$ (po trditvi 1.21) $h \circ X \in X^{-1}(\A)\backslash\mathcal{B}_{[-\infty, \infty]}.$
+
+                $(\Rightarrow):$ Dopisi
+            \end{proof}
+
+            \begin{posledica}
+                $\mathcal{M} = X^{-1}(\A)\backslash\mathcal{B}_{[0, \infty]}$
+            \end{posledica}
+
+            Za splosen $Y \in X^{-1}(\A)\backslash\mathcal{B}_{[-\infty, \infty]}$ je $\{Y^+, Y^-\} \subset X^{-1}(\A)\backslash\mathcal{B}_{[0, \infty]},$
+            zato po pravkar dokazanem obstoju $h_+, h_-$ iz $X^{-1}(\A)\backslash\mathcal{B}_{[0, \infty]}$ sledi, da je \dots
+
+            \begin{definicija}
+                Naj bo $D \subset 2^\Omega.$ $D$ je Dynkinov (tudi $\lambda$-) sistem na $\Omega \iff \Omega \in D$ in $(B\backslash A \in D \text{za} \ D \ni A \subset B \in D)$ in
+                $(\cup_{i \in \N}A_i \in D \forall \uparrow \text{zaporedje} (A_i)_{i \in \N} v D).$ $D$ je $\pi$-sistem $\iff D$ je zaprta za $cap$.
+
+            \end{definicija}
+
+            \begin{zgled}
+                $\{(-\infty, a]: a \in \R\}$ je $\pi$-sistem.
+            \end{zgled}
+
+            \begin{trditev}
+                Naj bo $D \subset 2^{\Omega}.$ $D$ je Dynkinov sistem na $\Omega \iff \Omega \in D$, $D$ je zaprt za $c^\Omega$, 
+                $\cup_{i \in \N}A_i \in D \forall$ zaporedje $(A_i)_{i \in \N}$ v $D$ ki ima $A_i \cap A_j = \emptyset$ za $i \neq j$ iz $\N$.
+
+            \end{trditev}
+
+
+            ... dopolni
+
+
+        \subsubsection{Lebesque-Stieltsove mere}
+            \begin{izrek}
+                (Lebesque-Stieltsove mere)
+            \end{izrek}
+
+            \begin{proof}
+                pisi
+            \end{proof}
+
+            \begin{definicija}
+                Meri $\mu$ iz izreka pravimo Lebesque-Stieltsova mera prirejena $F$ in jo oznacimo z $dF$.
+                ($\mathcal{L}:= d(id_\R)$ je Lebesquova mera na $\R$, ne obstaja razsiritev $\mathcal{F}$ na mero na $(\R, 2^\R)$).
+            \end{definicija}
+
+            \begin{trditev}
+                Naj bo $F:\R \rightarrow \R$ nepadajoca in zvezna z desne. Mera $dF$ je: $\sigma$-koncna; koncna $\iff$ $F$ je omejena
+                verjetnostna $\iff$ $\lim_{\infty}F - \lim_{-\infty}F = 1$ Za $x \in \R$ je $dF(\{x\}) = F(x) - \underbrace{F(x-)}_{\text{leva limita $F$ v $x$}}$. 
+
+            \end{trditev}
+            \begin{proof}
+                $\sigma$-koristnost: $\cup_{n \in \mathbb{Z}}(n, n+1]=\R$
+                $dF((n, n+1]) = F(n + 1) - F(n) \leq \infty \forall n \in \mathbb{Z}$.
+                ... poglej v skripto
+                Od tod dobimo karakterizacijo koncnosti $dF$ in kdaj je $dF$ verjetnostna mera.
+
+                Za $x \in \R$ je $(x - \frac{1}{n}, x] \downarrow \{x\}$, ko gre $n \rightarrow \infty$ cez $\N$ in zato je po zveznosti
+                $dF$ od zgoraj na mnozicah s koncno mero $dF(\{x\}) = \lim_{n \rightarrow \infty}dF((x - \frac{1}{n}, x]) = \lim_{n \rightarrow \infty}F(x) - F(x - \frac{1}{n})$.
+            \end{proof}
+
+            \begin{zgled}
+                skripta
+            \end{zgled}
+
+            \begin{zgled}
+                skripta (Contorjeva mnozica)
+            \end{zgled}
+
+    \subsection{Integracija na merljivih prostorih}
+        \begin{zgled}(nevem ce je zgled)
+            Naj bo $\mathcal{P}$ particija $\Omega$ in $\mu':\mathcal{P} \rightarrow [0, \infty)$ in
+            $f':\mathcal{P} \rightarrow [0, \infty)$ ($\mu$ je mera na $\sigma_\Omega(\mathcal{P})=\{\cup Q: Q \in 2^{\mathcal{P}}\}; \ 
+            \mu(\cup Q):= \sum_{p \in Q}\mu'(p)$ za $Q \subset \mathcal{P}$), ($f:\Omega \rightarrow [0, \infty); f(\omega) = f'(p)$ za $\omega \in p \in \mathcal{P}$)
+            Potem je $\sum_{p \in \mathcal{P}}f'(p)\cdot\mu'(p) = \sum_{r \in \mathcal{Z}_f}r\cdot\mu(\underbrace{\{f = r\}}_{f^{-1}(\{r\})})$.
+
+            tukej sta se dve interpretaciji tega
+        \end{zgled}
+
+        $\sum_{p \in \mathcal{P}}f'(p)\mu'(p) = \int_a^bf(z)dz$ Riemann - Darbouxov integral odsekoma konstantne funckije 
+        $f: [a, b] \rightarrow [0, \infty)$.
+
+        \subsubsection{Lebesqueov integral}
+            \begin{definicija}
+                Naj bo $(\Sigma, \F, \mu)$ prostor z mero in $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$
+                \begin{itemize}
+                    \item Ce je $f$ $\F$-enostvna, potem je
+                    $$
+                        \int fd\mu := \sum_{a \in \mathcal{Z}_f}a\cdot\mu(\underbrace{\{f = a\}}_{f^{-1}(\{a\})})
+                    $$
+                    \item Ce $f$ ni $\F$-enostvna in $f \geq 0$ definirana, potem je
+                    $$
+                        \int fd\mu := sup\{\int qd\mu: \text{q je $\F$-enostvna in $q  \leq f$}\}
+                    $$
+                    \item Ce f ni $\geq 0$, potem je 
+                    $$
+                        \int fd\mu := \int f^+d\mu - \int f^-d\mu
+                    $$
+                \end{itemize}
+                $\int fd\mu$ pravimo integral $f$ proti $\mu$ (tudi pricakovana vrednost, ce je $\mu$ verjetnostna mera).
+                Druge notacije za $\int fd\mu$ so $\mu[f]:=\mu^x[f(x)]:=\int f(x)\mu(dx).$
+            \end{definicija}
+
+            Za $A \in \F$ pisemo $\mu[f;A]:= \mu^x[f(x);x \in A]:= \int_A f(x)\mu(dx):= \int f\mathds{1}_Ad\mu$.
+
+            \begin{definicija}
+                Integral $f$ proti $\mu$ je dobro definiran $\iff$ $\int f^+d\mu \vee \int f^-d\mu < \infty$.
+                $f$ je $\mu$-integrabilen $\iff $ $\int f^+d\mu \vee \int f^-d\mu < \infty$.
+            \end{definicija}
+
+            \begin{definicija}
+                Naj bo $(\Omega, \F, \mu)$ prostor z mero. 
+                $$
+                    \mathcal{L}^1(\mu) := \{f \in \F\backslash\mathcal{B}_{\R}: \text{$f$ je $\mu$ integrabilna}\}. 
+                $$
+                Za $g:\Omega \rightarrow \mathbb{C}$ za katero je $\{\Re g, \Im g\} \subset \mathcal{L}^1(\mu)$ je 
+                $\int g d\mu:= \int \Re gd\mu + i\int \Im gd\mu$.
+            \end{definicija}
+
+            \begin{izrek}
+                Naj bo $(\Omega, \F, \mu)$ prostor z mero. Integral ima sledece lastnosti.
+                \begin{enumerate}
+                    \item Aditivnost: $\int (f + g)d\mu = \int fd\mu + \int gd\mu$ za $\{f, g\} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]}$ take, da je $\int f^{-1}d\mu \vee \int g^{-1}d\mu < \infty$.
+                    \item Integral indikatorja: $\int \mathds{1}_Ad\mu = \mu(A)$ za $\forall A \in \F$. ( V posebnem je $\int 0 d\mu = 0$ in torej $\int fd\mu = \int f^{+}d\mu - \int f^{-}d\mu$ za vse $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$)
+                    \item Integrali, ki so nic, ki so koncni: Za $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ je $\int f d\mu = 0 \iff \mu(f >0)= 0$ ($f$ je skoraj povsot glede na $\mu$), Ce $\int f d\mu < \infty \Rightarrow \mu(f = \infty) = 0$ ($f < \infty$ skoraj povsot glede na $\mu$.)
+                    \item Trikotniska neenakost: $\left|\int fd\mu\right| \leq \int |f|d\mu$ za $\forall f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ za katere je $\int |f|d\mu < \infty$.
+                    \item Integral ne vidi mnozic z mero 0: Ce je $\int fd\mu = \int gd\mu$ za $\{f, g\} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]}$ za katere je $f = g$ skoraj povsot glede na $\mu$ ($\mu(f \neq g) = 0$)
+                    \item Monotonost:
+                    \item Homogenost:                
+                    
+                
+                \end{enumerate}
+            \end{izrek}
+
+
+
+            
+
+            
 \end{document}
