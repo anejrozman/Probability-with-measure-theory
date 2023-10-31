@@ -266,7 +266,7 @@
                 \begin{enumerate}
                     \item V notacijah $\sigma_\Omega(\A)$ in $\sigma^{\F'}(f)$ spuscamo $\Omega$ in $\F'$ kadar je to jasno iz konteksta. Torej pisemo preprosto $\sigma(\A)$ in $\sigma(f)$.
                     \item V primeru ko je zaloga vrednosti $f$ stevna in nimamo podane ne $\F'$ ali $\Omega'$ za $\Omega'$ vazamemo $Z_f$ in za $\F'$ vazamemo $2^{\Omega'}$.
-                    \item Izmed objektov, ki smo ju uvedli v definiciji 7. je zacetna struktura bolj sugestivna.
+                    \item Izmed objektov, ki smo ju uvedli v definiciji 1.21 je zacetna struktura bolj sugestivna/pomembna.
                 \end{enumerate}
             \end{opomba}
 
@@ -289,7 +289,7 @@
             \end{definicija}
 
             \begin{zgled}
-                Naj bo $A \subset \Omega$. Potem $\sigma^{2^{\{0, 1\}}}(\mathds{1}_A) = \sigma_\Omega (A) = \{\emptyset, \Omega, A, \Omega\backslash A\}$. Ce je nadaljno $\F$ $\sigma$-algebra an $\Omega$ potem je  $\mathds{1}_A \in \F/2^{\{0, 1\}} \iff A \in \F$ 
+                Naj bo $A \subset \Omega$. Potem $\sigma^{2^{\{0, 1\}}}(\mathds{1}_A) = \sigma_\Omega (A) = \{\emptyset, \Omega, A, \Omega\backslash A\}$. Ce je nadaljno $\F$ $\sigma$-algebra na $\Omega$ potem je  $\mathds{1}_A \in \F/2^{\{0, 1\}} \iff A \in \F$ 
             \end{zgled}
 
             \begin{trditev}
@@ -314,8 +314,11 @@
                 \begin{enumerate}
                     \item $f^{-1}(\F')$ je $\sigma$-algebra na $\Omega$: $\forall \emptyset : f^{-1}(\emptyset) \in f^{-1}(\F');$ za $A'\in \F'$ je $\Omega \backslash f^{-1}(A') = f^{-1}(\Omega \backslash A') \in f^{-1}{\F'};$ za zaporedje $(A_i)_{i \in \N}$ je $\cup_{i \in \N}f^{-1}(A_i') = f^{-1}(\cup_{i \in \N}A_i') \in f^{-1}(\F').$ Drugi del je jasen
                     \item Podoben dokaz kot 1.
-                    \item krneki
-                    \item prvi del je jasen. Drugi del: $(\Rightarrow):$ je jasna. $(\Leftarrow):$ $\sigma_{\F}^{\Omega '}(f) \subset A'...$ napisi s skripte.
+                    \item Je direktna posledica definicije zacetne in koncne strukture.
+                    \item Prvi del: je jasen iz defnicije generirane $\sigma$-alebre. \\
+                    Drugi del: $(\Rightarrow):$ je jasen iz definicije generirane $\sigma$-algebre. \\
+                    $(\Leftarrow):$ $A' \subset \sigma_{\F}^{\Omega '}(f)$ torej sledi $\sigma_{\Omega'}(A')\subset \sigma_{\F}^{\Omega '}(f)$ in zato sledi $f \in \F\backslash\sigma_{\Omega'}(A'). $ \\
+                    Tretji del: V drugem delu vzamemo $\F = \sigma_{\Omega}(f^{-1}(A'))$, kar nam da $f \in \sigma_{\Omega}(f^{-1}(A'))\backslash\sigma_{\Omega'}(A')$. Opazimo, da je $f^{-1}(A')\subset f^{-1}(\sigma_{\Omega'}(A'))$ in zato po tocki 1. velja $\sigma_{\Omega}(f^{-1}(A')) \subset f^{-1}(\sigma_{\Omega'}(A'))$.
                 \end{enumerate}
             \end{proof}
 
@@ -336,7 +339,7 @@
             \end{posledica}
 
             \begin{proof}
-                Po prejsnji trditvi (1. tocka) je $\sigma_\Omega(\A)|_A = \sigma^{\sigma_\Omega(\A)}(id_A)$ $\sigma$-algebra na $A$ ki vsebuje $\A|_A$, torej velja $\sigma_A(\A|_A) \subset \sigma_\Omega(\A|_A).$ Po (2.tocki) je $\mathcal{C} := \{ C \in 2^\Omega: C \cap A \in \sigma_A(\A|_A)\} = \sigma_{\sigma_A(\A|_A)}^\Omega(id_A)$ $\sigma$-algebra na $\Omega$, ki vsebuje $\A$, torej $\sigma_\Omega(\A) \subset \mathcal{C}$, torej $\sigma_\Omega(\A)|_A \subset \sigma_A(\A|_A).$
+                Po prejsnji trditvi (1. tocka) je $\sigma_\Omega(\A)|_A = \sigma^{\sigma_\Omega(\A)}(id_A)$ $\sigma$-algebra na $A$ ki vsebuje $\A|_A$, torej velja $\sigma_A(\A|_A) \subset \sigma_\Omega(\A|_A).$ Po 2. tocki je $\mathcal{C} := \{ C \in 2^\Omega: C \cap A \in \sigma_A(\A|_A)\} = \sigma_{\sigma_A(\A|_A)}^\Omega(id_A)$ $\sigma$-algebra na $\Omega$, ki vsebuje $\A$, torej $\sigma_\Omega(\A) \subset \mathcal{C}$, torej $\sigma_\Omega(\A)|_A \subset \sigma_A(\A|_A).$
 
             \end{proof}
 
@@ -376,7 +379,13 @@
             \end{definicija}
 
             \begin{opomba}
-                Z $\mathcal{B}_\R$ oznacimo Lebesquovo mero. Funkcije, ki so merljive glede na $\mathcal{B}_{[-\infty, \infty]}$ na kodomeni, so nekako natanko tiste, ki se "lepo" obnasajo s stalisca integracije. Pričakovanje tega, kar sledi, nam je všeč tudi zato, ker na $(\R, \mathcal{B}_\R)$ lahko definiramo prijetno — netrivialno translacijsko invariantno — tako imenovano Lebesquovo mero. Prav tako lahko trdimo, da je reči, da je numerična preslikava $f$ merljiva (z vidika merjenja zanimiva), treba vsaj izmeriti množice $\{f \leq a\}:= f^{-1}{[-\infty, a]}$ za vsak $a \in \R$ (zlasti, ob malce predvidevanju vsebine drugega dela teh zapisov, za naključno spremenljivko $X$ bi želeli biti sposobni reči, kaj je verjetnost dogodkov $\{X \leq a\}$ za $a \in \R$).
+                Funkcije, ki so merljive glede na $\mathcal{B}_{[-\infty, \infty]}$ na kodomeni, so nekako natanko tiste, ki se "lepo" 
+                obnasajo s stalisca integracije. Pričakovanje tega, kar sledi, nam je všeč tudi zato, ker na $(\R, \mathcal{B}_\R)$ 
+                lahko definiramo prijetno - netrivialno translacijsko invariantno - tako imenovano Lebesquovo mero. Prav tako lahko 
+                trdimo, da je reči, da je numerična preslikava $f$ merljiva (z vidika merjenja zanimiva),
+                 treba vsaj izmeriti množice $\{f \leq a\}:= f^{-1}{[-\infty, a]}$ za vsak $a \in \R$ (zlasti, 
+                ob malce predvidevanju vsebine drugega dela teh zapisov, za naključno spremenljivko $X$ bi 
+                želeli biti sposobni povedati, kaj je verjetnost dogodkov $\{X \leq a\}$ za $a \in \R$).
             \end{opomba}
 
             \begin{zgled}
@@ -396,12 +405,12 @@
                     $\mathcal{B}_\R = \sigma_\R(\{(-\infty, a]: a \in \R\})$. Posledicno po trditvah 1.29 in 1.39 za $\sigma$-algebro $\F$ na $\Omega$ in $f:\Omega \rightarrow \R$, $f$ Borelovo merljiva $\iff$ $f \in \F/\mathcal{B}_\R \iff \{f \leq a\}:= f^{-1}((-\infty, a]) \in \F$ za $\forall a \in \R.$
             \end{zgled}
 
-            \begin{definicija}
+            \begin{definicija} (Aritmetika z $\infty$)
                  \begin{enumerate}
-                    \item $0\cdot (+-\infty) := 0$
+                    \item $0\cdot (\pm\infty) := 0$
                     \item $\infty + (-\infty) := 0$
                  \end{enumerate}
-                 Preostsanek aritmetike v $[-\infty, \infty]$ vpeljemo naravno, npr. $a \cdot \infty = sgn(a)\infty$ za $a \in [-\infty, \infty]\backslash\{0\}$, $a + \infty = \infty$ itd.
+                 Preostanek aritmetike v $[-\infty, \infty]$ vpeljemo naravno, npr. $a \cdot \infty = sgn(a)\infty$ za $a \in [-\infty, \infty]\backslash\{0\}$, $a + \infty = \infty$ itd.
             \end{definicija}
 
             \begin{trditev}
@@ -415,7 +424,7 @@
 
             \begin{trditev}
                 Naj bo $\F$ $\sigma$-algebra in $\left(f_n\right)_{n \in \N}$ zaporedje v $\F\backslash\mathcal{B}_{[-\infty, \infty]}.$
-                Potem je $$\{sup_{n \in \N}f_n, inf_{n \in \N}f_n, limsup_{n \rightarrow \infty}f_n, liminf_{n \rightarrow \infty}f_n \} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]}.$$
+                Potem je $$\{\sup_{n \in \N}f_n, \inf_{n \in \N}f_n, \limsup_{n \rightarrow \infty}f_n, \liminf_{n \rightarrow \infty}f_n \} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]}.$$
                 Ce je $f_n \geq 0$ za $n \in \N$, je $\sum_{n \in \N}f_n \in \F\backslash\mathcal{B}_{[0, \infty]}.$
             \end{trditev}
 
@@ -424,13 +433,14 @@
                 $\left(sup_{n \in \N}f_n\right)^{-1}\left([-\infty, a]\right) = \{sup_{n \in \N}f_n \leq a\} = \{f_n \leq a \ \forall n \in \N\} =
                  \cap_{n \in \N}{f_n \leq a}= \cap_{n \in \N}\underbrace{f_n^{-1}([-\infty, a])}_{\in \F \because f_n \in \F\backslash\mathcal{B}_{[-\infty, \infty]}}$
                  Da je $inf_{n \in \N}f_n \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ utemeljimo tako, da zapisemo $inf_{n \in \N} = -sup_{n \in \N} - f_n$ in opazimo, da je $-id_{[-\infty, \infty]} \in \mathcal{B}_{[-\infty, \infty]}\backslash\mathcal{B}_{[-\infty, \infty]}$
-                 limsup in liminf sta kombinaciji sup in inf. Koncno v primeru, da je $f_n \geq 0$ $\forall n \in \N$ je $\sum_{n\in\N}f_n = \lim_{n \rightarrow \infty}\sum_{k = 1}^{n}f_k = limsup_{n \rightarrow \infty}\underbrace{\sum_{k = 1}^nf_k}_{\in \F\backslash\mathcal{B}_{[-\infty, \infty]} po trditvi 1.36}$
-                 Kar nam da ...
+                 limsup in liminf sta kombinaciji sup in inf. Koncno v primeru, da je $f_n \geq 0$ $\forall n \in \N$ je $\sum_{n\in\N}f_n = \lim_{n \rightarrow \infty}\sum_{k = 1}^{n}f_k = limsup_{n \rightarrow \infty}\underbrace{\sum_{k = 1}^nf_k}_{\in \F\backslash\mathcal{B}_{[-\infty, \infty]} \text{po trditvi 1.44}}$
+                 Kar nam da $\sum_{n \in \N}f_n \in \F\backslash\mathcal{B}_{[0, \infty]}$.
             \end{proof}
 
             \begin{posledica}
-                Naj bo $\F$ $\sigma$-algebra, potem je $\{max(f, g), min(f, g), f^+, f^-, |f|\} \subset \F\mathcal{B}_{[-\infty, \infty]}$ za $\{f, g\} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]}.$ Poleg tega je 
-                $\{\{f_n \text{konvergira, ko gre} \ n \rightarrow \infty\}, \{f_n \text{konvergira, k vrednosti iz} \ \R \text{ko gre} \ n \rightarrow \infty\}, \{\lim_{n \rightarrow \infty}f_n = f_0\}\} \subset \F$ za vsako
+                Naj bo $\F$ $\sigma$-algebra, potem je $\{\max(f, g), \min(f, g), f^+, f^-, |f|\} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]}$ za $\{f, g\} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]}.$ Poleg tega je 
+                $\{\{f_n \ \text{konvergira, ko gre} \ n \rightarrow \infty\},$ 
+                $ \{f_n \text{konvergira k vrednosti iz} \ \R \ \text{ko gre} \ n \rightarrow \infty\}, \{\lim_{n \rightarrow \infty}f_n = f_0\}\} \subset \F$ za vsako
                 zaporedje $(f_n)_{n \in \N_0}$ v $\F\backslash\mathcal{B}_{[-\infty, \infty]}.$
             \end{posledica}
 
@@ -438,17 +448,13 @@
                 Brez dokaza.
             \end{proof}
 
-            \begin{zgled}
-                Naj $f:\R \rightarrow \R$ ... Poglej v skripto. Pac primer kako ta trditev deluje.
-            \end{zgled}
-
         \subsubsection{Argumenti monotonega razreda}
             IDEJA: Zelimo dokazati tridtev, ki se tice vseh funkcij iz $\F\backslash\mathcal{B}_{[-\infty, \infty]}.$ Najprej pokazemo trditev za 
             $\mathds{1}_A, A \in \F$. $\rightarrow$ izrek o monotonem razredu $\rightarrow$ trditev velja v splosnem.
 
             \begin{definicija}
-                Naj bo $\F$ $\sigma$-algebra na $\Omega$ in $f:\rightarrow [0, \infty]$.
-                f je $\F$-enostavna $\iff$ $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ in $\mathcal{Z}_f$ je koncna.
+                Naj bo $\F$ $\sigma$-algebra na $\Omega$ in $f:\Omega\rightarrow [0, \infty]$.
+                f je $\F$-enostavna $\iff$ $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ in $\mathcal{Z}_f$ je koncna mnozica.
             \end{definicija}
 
             \begin{trditev}
