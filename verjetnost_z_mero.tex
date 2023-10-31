@@ -101,7 +101,7 @@
             
             \begin{definicija}($\sigma$-algebra, pod-$\sigma$-algebra in algebra)
                 \begin{enumerate}
-                    \item$\mathcal{A}$ je $\sigma$-algebra na $\Omega \iff (\Omega, \A)$ je merljiv prostor $\iff \emptyset \in \mathcal{A}$ in $\mathcal{A}$ je zaprta za $c^\Omega$ in $\sigma\cup$. e je $\mathcal{A} \ \sigma$-algebra na $\Omega$ potem: $A$ je $\mathcal{A}$-merljiva $\iff A \in \mathcal{A}.$
+                    \item$\mathcal{A}$ je $\sigma$-algebra na $\Omega \iff (\Omega, \A)$ je merljiv prostor $\iff \emptyset \in \mathcal{A}$ in $\mathcal{A}$ je zaprta za $c^\Omega$ in $\sigma\cup$. Ce je $\mathcal{A} \ \sigma$-algebra na $\Omega$ potem: $A$ je $\mathcal{A}$-merljiva $\iff A \in \mathcal{A}.$
                     \item $\mathcal{B}$ je pod-$\sigma$-algebra $\mathcal{A} \iff \mathcal{B} \subset \mathcal{A}$ in $\mathcal{B}$ je $\sigma$-algebra na $\Omega$.
                     \item $\mathcal{A}$ je algebra na $\Omega \iff \emptyset \in \mathcal{A}$ in $\mathcal{A}$ je zaprta za $c^\Omega$ in $\cup$.
                 \end{enumerate}
@@ -166,7 +166,7 @@
                 \item $\sigma$-koncna $\iff \exists (A_n)_{n \in \N} \subset \F: \Omega = \cup_{n \in \N} A_n \ \text{in} \ \mu(A_n) < \infty \ \forall n \in \N$
             \end{enumerate}
 
-            \begin{definicija}(Merljiv prostor)
+            \begin{definicija}(Prostor z mero)
                 $\left( \Omega, F, \mu \right)$ je prostor z mero $\iff \mu$ je mera na $(\Omega, F)$
             \end{definicija}
 
@@ -340,17 +340,6 @@
 
             \end{proof}
 
-            \begin{zgled}
-                Prepricaj se da je v zgledu 1.3 $\sigma_\Omega A = \sigma_\Omega(\{A\}).$
-            \end{zgled}
-
-            \begin{zgled}
-                 
-            \end{zgled}
-
-            \begin{zgled}
-                ...
-            \end{zgled}
 
             \begin{opomba}
                 Kako lahko v sposnem dolocimo $\sigma_\Omega(\A)$? Zacnemo z $\A$ karkoli kar mora biti v $\sigma_\Omega(\A)$ da zadosca pogojem $\sigma$-algebre, vse komplemente, stevne unije, $\emptyset$, $\Omega$ in stevne unije teh itd. Po tem postopku dokazemo, da je to kar imamo $\sigma$-algebra.
@@ -639,8 +628,207 @@
             \end{izrek}
 
 
+            ... se od lucije za prepisat
 
+            \begin{proof}
+                (ib) $\Rightarrow$ (ia) in (ii):
+                (ia):
+                $$
+                    \left(inf_{n \geq m} f_n\right)_{m \in \N} je zaporedje v \F\backslash\mathcal{B}_{[-\infty, \infty]},
+                $$
+                ki je narascajoce. $f_n^- \leq g \Rightarrow \left(inf_{n \geq m} f_n\right)^- \leq g$. Po (ib) sledi da 
+                $$
+                    \int \lim_{m \rightarrow \infty}f_m d\mu =  \int \lim_{m \rightarrow \infty} inf_{n \in \N \geq m} f_n d\mu
+                    = lim_{m \rightarrow \infty} \int inf_{n \in \N \geq m} fn d\mu \leq liminf_{n \rightarrow \infty} \int f_n d\mu.
+                $$
+                (ii):
+                Uporabim (ia). Za $\left(- |\underbrace{fn - lim_{m\rightarrow \infty} f_m}_{\leq 2g}|\right)_{n \in \N}$ in dobimo 
+                $$
+                    0 = \int liminf_{n \rightarrow \infty} \left(- |\underbrace{fn - lim_{m\rightarrow \infty} f_m}_{\leq 2g}|\right) d\mu
+                    \leq ...
+                $$
+            \end{proof}
+
+            \begin{posledica}
+                Naj bo $(\Omega, \F, \mu)$ prostor z mero in $(f_n)_{n \in \N}$ zaporedje v $\F\backslash\mathcal{B}_{[0, \infty]}$.
+                Potem je 
+                $$
+                    \int \sum_{n \in \N_0}f_n d\mu = \sum_{n \in \N_0}\int f_n d\mu.
+                $$
+            \end{posledica}
+
+            \begin{proof}
+                $$
+                    \sum_{n \in \N_0} = lim_{N \rightarrow \infty}\sum_{m = 1}^n f_m (narascajoce v n)
+                $$
+                Zaradi prejsnjega izreka sledi
+                $$
+                    \int \sum_{n \in \N_0}f_n d\mu = lim_{N \rightarrow \infty}\int \sum_{m = 1}^n f_m d\mu = 
+                    lim_{N \rightarrow \infty}\sum_{m = 1}^n \int f_m d\mu = \sum_{n \in \N_0}\int f_n d\mu.
+                $$
+            \end{proof}
             
+            \begin{posledica}
+                Naj bo $(\Omega, \F)$ merljiv prostor in $(\mu_n)_{n \in \N}$ zaporedje mer na $(\Omega, \F)$. Potem je 
+                $\sum_{n \in \N}\mu_n$ mera na $(\Omega, \F)$ in za $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ je
+                $$
+                    \int fd\left(\sum_{n \in \N}\mu_n\right) dobro definirana \iff 
+                    \left( \sum_{n \in \N}\int f^+d\mu_n\right) \vee \left(\sum_{n \in \N}\int f^-d\mu_n\right) < \infty.
+                $$
+                V tem primeru je 
+                $$
+                    \int f d(\sum_{n \in \N}\mu_n) = \sum_{n \in \N}\int fd\mu_n.
+                $$
+            \end{posledica}
+
+            \begin{proof}
+                Za $A \in \F$ je $\sum_{n \in \N}\mu_n(A) = \int \mu_n(A)c_\N(dn)$. Potem je za zaporedje $(A_m)_{m \in \N}$
+                paroma disjunktnih mnozic v $\F$:
+                $$
+                    \left( \sum_{n \in \N}\mu_n \right)\left(\cup_{m \in \N}A_m\right) = \\
+                    \int \mu_n \left(\cup_{m \in \N}A_m\right)c_\N(dn) = \int \sum_{m \in \N}\mu_n(A_m)c_\N(dn) =\\
+                    = \sum_{m \in \N} \int \mu_n(A_m)c_\N(dn) = \sum_{m \in \N}\left(\sum_{n\in \N}(\mu_n(A_m))\right) = \\
+                    = \sum_{m \in \N}\left[\left(\sum_{n\in\N}\mu_n\right)(A_m)\right]
+                $$
+            \end{proof}
+
+            Naprej, razred funkcij $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ za katere velja prejsnja posledica je
+            $$
+                \int f d\left(\sum_{n\in\N}\mu_n\right) = \int \int f d\mu_n c_\N(dm)
+            $$
+            konveksen stozec zaprt za $\uparrow$ limite, ki svebuje $\mathds{1}_A$ za $A \in \F$.
+            Po izreku o monotonem razredu prejsnja posledica velja za vse $f \in \F\backslash\mathcal{B}_{[-0, \infty]}$.
+
+            \begin{definicija}
+                Naj bo $(\Omega, \F, \mu)$ prostor z mero in $(\Omega', \F')$ merljiv prostor. Za $ \in \F\backslash\F'$ vpeljemo
+                $$
+                    f * \mu: \F' \rightarrow [0, \infty], \\
+                    (f*\mu)(A') := \mu(f^{-1}(A')) \text{za $A'\in \F'$}.
+                $$
+                $f*\mu$ oznacimo tudi z $\mu \circ f^{-1}$ ali $\mu_{f}$ in ji recemo potisk $\mu$ po $f$ glede na $\F'$, ali 
+                zakon $f$ pod $\mu$ glede na $\F'$ (v primeru, da je verjetnostna).
+            \end{definicija}
+
+            \begin{definicija}
+                Z $f*\mu$ oznacimo sliko mere $\mu$ pod $f$ glede na $\F$.
+            \end{definicija}
+
+            \begin{posledica}
+                Naj bo $(\Omega, \F, \mu)$ prostor z mero in $(\Omega', \F')$ merljiv prostor. Za $f \in \F\backslash\F'$ je
+                $f*\mu$ mera na $(\Omega', \F')$, ki je koncna ali verjetnostna - kakor je $\mu$. Poleg tega je za $g \in \F'\backslash\mathcal{B}_{[-\infty, \infty]}$
+                $$
+                    \int g d(f*\mu) \text{dobro definiran} \iff \int g \circ f d\mu text{dobro definiran}.
+                $$
+                in tedaj je 
+                $$
+                    \int g d(f*\mu) = \int g \circ f d\mu.
+                $$
+            \end{posledica}
+
+            \begin{proof}
+                $(f*\mu)(\emptyset) = \mu(f^{-1}(\emptyset)) = \mu(\emptyset) = 0.$
+                Za zaporedje $(A_n)_{n \in \N}$ paroma disjunktnih mnozic v $\F'$ je 
+                $(f*\mu)(\cup_{n\in\N}A_n) = \mu(f^{-1}(\cup_{n \in \N}A_n)) = \mu(\cup_{n\in\N}f^{-1}(A_n)) = \sum_{n\in\N}\mu(f^{-1}(A_n)) = \sum_{n\in\N}(f*\mu)(A_n).$	
+                Torej velja da je $f*\mu$ mera na $(\Omega', \F')$.
+                Naprej, $(f*\mu)(\Omega') = \mu(f^{-1}(\Omega')) = \mu(\Omega),$ torej je res $f*\mu$ koncna oz. verjetnostna
+                $\iff$ je $\mu$ koncna oz. verjetnostna.
+            \end{proof}
+
+            Postavimo sedaj
+            $$
+            \mathcal{M} := \{g \in \F'\backslash\mathcal{B}_{[0, \infty]} \mid \int gd(f* \mu) = \int g \circ f d\mu\}.
+            $$
+            $\mathds{1}_A \in \mathcal{M} \forall A \in \F',$ kajti $\int \mathds{1}_Ad(f*\mu) = (f*\mu)(A) = \mu(f^{-1}(A)) = \int\mathds{1}_{f^{-1}(A)}d\mu$.
+            $\mathcal{M}$ je konveksen stozec.
+            dokaz\dots
+
+            $\mathcal{M}$ je zaprta za $\uparrow$ limite.
+            dokaz\dots
+
+            Za splosen $g \in \F'\backslash\mathcal{B}_{[-\infty, \infty]}$ je $\{g^+, g^-\} \subset \F'\backslash\mathcal{B}_{[-\infty, \infty]}$,
+            zato $\int g^+d(f* \mu) = \int g^+ \circ $ ... to je del dokaza.
+
+            \begin{posledica}
+                Naj bo $(X, \Sigma, \mu)$ prostor z mero in $O$ neka odprta podmnozica $\R$ in $f:X \times O \rightarrow \R$. Denimo, da je 
+                \begin{itemize}
+                    \item $F(., t)$ $\mu$-integrabilna za $\forall t \in O$
+                    \item $F(x, .)$ odvedljvia za $\forall x \in X$ 
+                \end{itemize}
+                Predpostavimo, da $\exists$ $g \in \Sigma\backslash\mathcal{B}_{[o, \infty]}, \int g d\mu < \infty,$ taka da je 
+                $$
+                    \left|\frac{\partial F}{\partial t}(x, t) \right| \leq g(x) \forall x \in X \forall t \in O.
+                $$
+                Potem velja 
+                \begin{itemize}
+                    \item $(X \ni x \rightarrow \frac{\partial F}{\partial t}(x, t))$ je $\mu$-integrabilna
+                    \item $(O \ni t \rightarrow \int F(x,t)\mu(dx))$ je odvedljiva in 
+                    \item $\frac{d}{dt}\int F(x, t)\mu(dx) = \int \frac{\partial F}{\partial t}(x, t)\mu(dx). \forall t \in O$
+                \end{itemize}
+            \end{posledica}
+
+            \begin{proof}
+                Od tanje prepisi.
+            \end{proof}
+
+        \subsubsection{Zamenjava vrstnega reda integracija in povezane teme}
+            
+            \begin{definicija}
+                Naj bosta $(\Omega', \F)$ in $(\Omega', \F')$ merljiva prostora. 
+                $$
+                    \F \otimes \F' := \sigma_{\Omega \times \Omega'}(\{A \times A' \mid (A, A') in \F \times \F'\})
+                $$
+                je produktna $\sigma$-algebra $\F$ in $\F'$ $(\mathcal{B}_{\R^n} := \mathcal{B}_{\R} \otimes \cdots \otimes \mathcal{B}_{\R})$ je Borelova
+                $\sigma$-algebra na $\R^n$.
+            \end{definicija}
+
+            \begin{trditev}
+                Za $A \subset \R^2$ in $f:A \rightarrow [-\infty, \infty]$, ki je zvezna je $f \in \mathcal{B}\backslash\mathcal{B}_{[-\infty, \infty]}$.
+            \end{trditev}
+
+            \begin{proof}
+                Brez dokaza.
+            \end{proof}
+
+            \begin{trditev}
+                Naj bosta $(\Omega, \F)$ in $(\Omega', \F')$ merljiva prostora. Potem velja:
+                \begin{enumerate}
+                    \item $\F \otimes \F' $ je najmanjsa $\sigma$-algebra $\mathcal{G}$ na $\Omega \times \Omega$ za katero je $pr_\Omega := (\Omega \times \Omega' \ni (\omega, \omega') \rightarrow w) \in \mathcal{G}\backslash\F$ in $pr_{\Omega'} := (\Omega \times \Omega' \ni (\omega, \omega') \rightarrow \omega') \in \mathcal{G}\backslash\F'$.
+                    \item Za $f \in (\F \otimes \F')\backslash\mathcal{B}_{[-\infty, \infty]} \Rightarrow$ $f(\omega, .) \in \F'\backslash\mathcal{B}_{[-\infty, \infty]} \forall \omega \in \Omega$ in $f(., \omega') \in \F\backslash\mathcal{B}_{[-\infty, \infty]} \forall \omega' \in \Omega'$.
+                    \item Za vsako $\sigma$-algebro $\mathcal{G}$ na $G$ in $f: G \rightarrow \Omega$ ter $f':G \rightarrow \Omega'$ je $(f, f') \in \mathcal{G}\backslash\F\otimes\F' \iff f \in \mathcal{G}\backslash\F$ in $f'\in \mathcal{G}\backslash\F'.$
+                \end{enumerate}
+            \end{trditev}
+
+            \begin{proof}
+                Brez dokaza.
+            \end{proof}
+
+            \begin{izrek}
+                Naj bosta $(\Omega, \F, \mu)$ in $(\Omega', \F', \mu')$ prostora z mero ter $\mu$ in $\mu'$ $\sigma$-koncni. Potem velja:
+                \begin{enumerate}
+                    \item Obstaja natanko ena mera $\ni$ na $\F \otimes \F'$, ki jo oznacimo $\mu \times \mu'$, da je $\ni(A \times A') = \mu(A)\mu'(A') \forall (A, A') \in \F \times \F'$.
+                    \item Naj bo $f \in (\F \otimes \F')\backslash\mathcal{B}_{[-\infty, \infty]}$. in naj velja:
+                        \begin{enumerate}
+                            \item $ f \geq 0$
+                            \item $\int|f|d(\mu \times \mu') < \infty$
+                            \item $\int\int f^-(\omega, \omega')\mu(d\omega)\mu'(d\omega') and \int\int f^-(\omega, \omega')\mu'(d\omega')\mu(d\omega) < \infty$.
+                        \end{enumerate}
+                        Potem je $(\Omega \ni \omega' \rightarrow \int f(\omega, \omega')\mu(d\omega)) \in \F'\backslash\mathcal{B}_{[-\infty, \infty]}$ in 
+                        $(\Omega' \ni \omega \rightarrow \int f(\omega, \omega')\mu'(d\omega')) \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$. in 
+                        $ \int fd(\mu\times\mu') = \int\int f(\omega, \omega')\mu(d\omega)\mu'(d\omega') = \int\int f(\omega, \omega')\mu'(d\omega')\mu(d\omega).$
+                \end{enumerate}
+            \end{izrek}
+
+            \begin{proof}
+                Brez dokaza.
+            \end{proof}
+
+            \begin{definicija}
+                Meri $\mu \times \mu'$ recemo produktna mera. $(\mathcal{L}^n:= \mathcal{L}\times \cdots \times\mathcal{L}$ 
+                pravimo $n$-razsezna Lebesquova mera). 
+            \end{definicija}
+
+
+
 
             
 \end{document}
