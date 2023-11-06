@@ -974,8 +974,60 @@
                 pravimo $n$-razsezna Lebesquova mera na $(\R^n, \mathcal{B}_{\R^n})$). 
             \end{definicija}
 
+            \begin{zgled}
+                Naj bo $f:[0, \infty] \rightarrow [0, \infty]$ zvezna za katero velja $f(0) = 0$ ter naj bo na $(0, \infty)$ zvezno odvedljiva z $f'\geq 0$ na $(0, \infty)$. Naj bo $\nu$ $\sigma$-koncna mera na $\mathcal{B}_{[0, \infty]}.$ Potem je 
+                \begin{align*}
+                    \int f d\nu = \int \int_{0}^x f'(t)dt \nu(dx) &= \int \int_{(0, x)}f'(t)\mathcal{L}(dt)\nu(dx) = \\
+                    &=\int \int f'(t)\mathds{1}_{(0, x)}(t)\mathcal{L}(dt)\nu(dx)\\
+                    &= \int \int f'(t)\mathds{1}_{(0, x)}(t)\nu(dx)\mathcal{L}(dt) \\
+                    &= \int_{(0, \infty)}f'(t)\int \mathds{1}_{(t, \infty)}(x)\nu(dx)\mathcal{L}(dt) \\
+                    &= \int_{(0, \infty)}f'(t)\nu(t, \infty)\mathcal{L}(dt).
+                \end{align*}
+            \end{zgled}
 
-
-
+            \begin{trditev}
+                Naj bo $(\Omega, \F, \mu)$ prostor z mero in $(\Omega', \F')$ merljiv prosotor. Naj bo $X \in \F\backslash\F'$. 
+                Naj bo $(A, \A)$ merljiv prosotor in $D_A:= \{(a, a)\mid a\in A\} \in \A\otimes\A$ ter $\{f, g\}\subset \F'\backslash\A$.
+                Potem je $f(X) = g(X)$ skoraj povosd $\iff$ $f = g$ skoraj povsod glede na $X*\mu$.
+            \end{trditev}
             
+            \begin{proof}
+                $\{f \neq g\} = \Omega'\backslash\{f = g\} = \Omega'\backslash\left[(f, g)^{-1}(D_A)\right]$.
+                $\{f, g\}\subset \F'\backslash\A$ Po trditvi 2.17 sledi $(f, g) \in \F'\backslash(\A\otimes\A)$
+                $\{f \neq g\} \in \F'$
+                $(X*\mu)(\{f\neq g\}) = \mu(X{-1}(\{f\neq g\})) = \mu(\{f(X)\neq g(X)\})$
+            \end{proof}
+
+        \subsubsection{Nedolocena integracija in absolutna zveznost}
+            \begin{definicija}
+                Naj bo $(\Omega, \F, \mu)$ prostor z mero in $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$, 
+                ki ima $\int fd\mu$ dobro definiran. Potem funkciji 
+                $$
+                    f \cdot \mu:= (\F \ni A \rightarrowtail \int_A f d\mu)
+                $$
+                pravimo nedoloceni integral $f$ proti $\mu$.
+            \end{definicija}
+
+            \begin{definicija}
+                Za dve meri $\mu$ in $\nu$ na merljivem prostoru $(\Omega, \F)$ je:
+                \begin{enumerate}
+                    \item $\mu << \nu \iff$ $\nu$ je absolutno zvezna glede na $\mu$ $\iff$ $\forall A \in \F$ za katerega je $\nu(A) = 0$ je tudi $\mu(A) = 0$. 
+                    \item $\mu \sim \nu$ $\iff$ $\mu$ je ekvivalentna $\nu$ $\iff$ $\nu << \mu$ in $\mu << \nu.$
+                \end{enumerate}
+            \end{definicija}
+
+            \begin{trditev}
+                Naj bo $(\Omega, \F, \mu)$ prostor z mero in $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$. Potem je 
+                $f \cdot \mu$ mera na $\F$, ki je $<< \mu$ in 
+                $$
+                    \int g d(f \cdot \mu) = \int gf d\mu.
+                $$
+                Pri cemer je leva stran dobro definirana $\iff$ je to res za desno stran in to za $\forall g \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$.
+            \end{trditev}
+            
+            \begin{opomba}
+                Kadar sta integrala dobro definirana je $g \cdot (f \cdot \mu) = (gf)\cdot \mu$ (asociativnost nedolocene integracije).
+                Ce je $f>0$ skoraj povsod glede na $\mu$ potem je $f\cdot\mu \sim \mu$.
+            \end{opomba}
+
 \end{document}
