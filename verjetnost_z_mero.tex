@@ -190,7 +190,7 @@
             \end{zgled}      
             
             \begin{zgled}
-                Ce definiramo $c_\Omega:2^\Omega \rightarrow [0, \infty]$ kot $c_\Omega(A) := |A|$ ce je $A$ koncna podmnozica $\Omega$ in $c_\Omega(A) := \infty$ ca je neskoncna podmnozica $\Omega$, je $c_\Omega$ tako imenovana stevna mera na $\Omega$. Ko je $\Omega$ koncna in neprazna, potem je $\frac{c_\Omega}{|\Omega|}$ verjentostna mera na $\Omega$.  
+                Ce definiramo $c_\Omega:2^\Omega \rightarrow [0, \infty]$ kot $c_\Omega(A) := |A|$ ce je $A$ koncna podmnozica $\Omega$ in $c_\Omega(A) := \infty$ ce je $A$ neskoncna podmnozica $\Omega$, je $c_\Omega$ tako imenovana stevna mera na $\Omega$. Ko je $\Omega$ koncna in neprazna, potem je $\frac{c_\Omega}{|\Omega|}$ verjentostna mera na $\Omega$.  
             \end{zgled}
 
             \begin{zgled}
@@ -225,7 +225,14 @@
             \end{zgled}
 
             \begin{proof}
-                
+                Zaporedje mnozic $\{\cup_{n=N}^\infty A_n\}_{N=1}^\infty$ je padajoce:
+                $$
+                \cup_{n=N}^\infty A_n \supseteq \cup_{n=N+1}^\infty A_n \supseteq \cdots \supseteq \cup_{n=M}^\infty A_n \supseteq \cdots \supseteq \limsup_{n \rightarrow \infty}A_n = \cap_{N=1}^\infty \cup_{n=N}^\infty A_n
+                $$
+                Po zveznosti od zgoraj (5.) sledi:
+                $$
+                \mu(\limsup_{n \rightarrow \infty}A_n) = \mu(\cap_{N=1}^\infty \cup_{n=N}^\infty A_n) = \lim_{N \rightarrow \infty}\mu(\cup_{n=N}^\infty A_n) \leq \lim_{N \rightarrow \infty}\sum_{n=N}^\infty \mu(A_n) = 0
+                $$
             \end{proof}
 
             \begin{zgled}
@@ -357,7 +364,7 @@
                 \begin{enumerate}
                     \item Ce je $A' \subset \Omega$ taksna, da $f:\Omega \rightarrow A'$, potem je $f \in \F/\F'$ natanko tedaj ko je $f \in \F/(\F'|_{A'})$.
                     \item Za $A \subset \Omega$, ce je $f \in \F/\F'$, je $f|_{A} \in (\F|_A)/\F'$.
-                    \item Ce za zaporedje $(A_i)_{i \in \N}$ v $\F$, az katerega je $\Omega = \cup_{i \in \N}A_i$, velja $f|A_{i} \in (\F|_{A_{i}})/\F'$ za vsak $i \in \N$, potem $f \in \F/\F'$.
+                    \item Ce za zaporedje $(A_i)_{i \in \N}$ v $\F$, za katerega je $\Omega = \cup_{i \in \N}A_i$, velja $f|_{A_{i}} \in (\F|_{A_{i}})/\F'$ za vsak $i \in \N$, potem $f \in \F/\F'$.
                 \end{enumerate}
             \end{trditev}
 
@@ -402,9 +409,9 @@
             \end{definicija}
 
             \begin{zgled}
-                    $\mathcal{B}_\R = \sigma_\R(\{(-\infty, a]: a \in \R\})$. Posledicno po trditvah 1.29 in 1.39 za $\sigma$-algebro $\F$ na $\Omega$ in $f:\Omega \rightarrow \R$, $f$ Borelovo merljiva $\iff$ $f \in \F/\mathcal{B}_\R \iff \{f \leq a\}:= f^{-1}((-\infty, a]) \in \F$ za $\forall a \in \R.$
+                    $\mathcal{B}_\R = \sigma_\R(\{(-\infty, a]: a \in \R\})$. Posledicno po trditvah 1.29 in 1.36 za $\sigma$-algebro $\F$ na $\Omega$ in $f:\Omega \rightarrow \R$, $f$ Borelovo merljiva $\iff$ $f \in \F/\mathcal{B}_\R \iff \{f \leq a\}:= f^{-1}((-\infty, a]) \in \F$ za $\forall a \in \R.$
             \end{zgled}
-
+            \pagebreak
             \begin{definicija} (Aritmetika z $\infty$)
                  \begin{enumerate}
                     \item $0\cdot (\pm\infty) := 0$
@@ -414,7 +421,7 @@
             \end{definicija}
 
             \begin{trditev}
-                Za $A \subset [-\infty, \infty]$ in $f:A \rightarrow [-\infty, \infty]$ zvezna ter $f \in \mathcal{B}_A\backslash\mathcal{B}_{[-\infty, \infty]}.$ Ce je $\F$ $\sigma$-algebra 
+                Za $A \subset [-\infty, \infty]$ in $f:A \rightarrow [-\infty, \infty]$ zvezna, potem $f \in \mathcal{B}_A\backslash\mathcal{B}_{[-\infty, \infty]}.$ Ce je $\F$ $\sigma$-algebra 
                 in $\{f, g\} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]},$ potem je $\{f+g, fg\} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]}$ in $\{\{f=g\}, \{f\subset g\}, \{f \leq g\}\} \subset \F$.
             \end{trditev}
 
@@ -430,10 +437,10 @@
 
             \begin{proof}
                 $\mathcal{B}_{[-\infty, \infty]} = \sigma_{[-\infty, \infty]}(\{[-\infty, a]: a\in\R\})$. Za $a \in \R$ 
-                $\left(sup_{n \in \N}f_n\right)^{-1}\left([-\infty, a]\right) = \{sup_{n \in \N}f_n \leq a\} = \{f_n \leq a \ \forall n \in \N\} =
+                $\left(\sup_{n \in \N}f_n\right)^{-1}\left([-\infty, a]\right) = \{\sup_{n \in \N}f_n \leq a\} = \{f_n \leq a \ \forall n \in \N\} =
                  \cap_{n \in \N}{f_n \leq a}= \cap_{n \in \N}\underbrace{f_n^{-1}([-\infty, a])}_{\in \F \because f_n \in \F\backslash\mathcal{B}_{[-\infty, \infty]}}$
-                 Da je $inf_{n \in \N}f_n \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ utemeljimo tako, da zapisemo $inf_{n \in \N} = -sup_{n \in \N} - f_n$ in opazimo, da je $-id_{[-\infty, \infty]} \in \mathcal{B}_{[-\infty, \infty]}\backslash\mathcal{B}_{[-\infty, \infty]}$
-                 limsup in liminf sta kombinaciji sup in inf. Koncno v primeru, da je $f_n \geq 0$ $\forall n \in \N$ je $\sum_{n\in\N}f_n = \lim_{n \rightarrow \infty}\sum_{k = 1}^{n}f_k = limsup_{n \rightarrow \infty}\underbrace{\sum_{k = 1}^nf_k}_{\in \F\backslash\mathcal{B}_{[-\infty, \infty]} \text{po trditvi 1.44}}$
+                 Da je $\inf_{n \in \N}f_n \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ utemeljimo tako, da zapisemo $\inf_{n \in \N} = -\sup_{n \in \N} - f_n$ in opazimo, da je $-id_{[-\infty, \infty]} \in \mathcal{B}_{[-\infty, \infty]}\backslash\mathcal{B}_{[-\infty, \infty]}$
+                 $\limsup$ in $\liminf$ sta kombinaciji $\sup$ in $\inf$. Koncno v primeru, da je $f_n \geq 0$ $\forall n \in \N$ je $\sum_{n\in\N}f_n = \lim_{n \rightarrow \infty}\sum_{k = 1}^{n}f_k = \limsup_{n \rightarrow \infty}\underbrace{\sum_{k = 1}^nf_k}_{\in \F\backslash\mathcal{B}_{[-\infty, \infty]} \text{po trditvi 1.44}}$
                  Kar nam da $\sum_{n \in \N}f_n \in \F\backslash\mathcal{B}_{[0, \infty]}$.
             \end{proof}
 
@@ -454,7 +461,7 @@
 
             \begin{definicija}
                 Naj bo $\F$ $\sigma$-algebra na $\Omega$ in $f:\Omega\rightarrow [0, \infty]$.
-                f je $\F$-enostavna $\iff$ $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ in $\mathcal{Z}_f$ je koncna mnozica.
+                f je $\F$-enostavna $\iff$ $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ in $\mathcal{Z}_f$ je omejena mnozica.
             \end{definicija}
 
             \begin{trditev}
@@ -464,7 +471,7 @@
             \end{trditev}
 
             \begin{proof}
-                $(\Rightarrow):$ $f = \sum_{\mathcal{Z}\backslash\{0\}}a\cdot\mathds{1}_{\{f = a\}}, \{f = a\}$ pomeni $f^{-1}(\{a\}) \in \F.$
+                $(\Rightarrow):$ $f = \sum_{\mathcal{Z}_f\backslash\{0\}}a\cdot\mathds{1}_{\{f = a\}}, \{f = a\}$ pomeni $f^{-1}(\{a\}) \in \F.$
                 $(\Leftarrow):$ Baje da je ocitno (V skripti ni dokaza).
             \end{proof}
 
