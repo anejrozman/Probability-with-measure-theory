@@ -19,6 +19,7 @@
 \usepackage{mathtools}
 \usepackage{tikz}
 \usepackage{dsfont}
+\usepackage{mathtools}
 
 
 % ukazi za matematicna okolja
@@ -42,6 +43,9 @@
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\F}{\mathcal{F}}
 \newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\Le}{\mathcal{L}}
 \newcommand{\sh}{š}
 \newcommand{\ch}{č}
 \newcommand{\zh}{ž}
@@ -71,6 +75,7 @@
         \vspace{0.3cm}
   
         Zapiski po predavanjih doc.\@ dr.\@ Matije Vidmarja v študijskem letu 2023/2024.
+        (Priporocam da med branjem sledite tudi originalni skripti predavatelja)
     \end{center}
     \vfill
         Ljubljana, 2023     
@@ -905,7 +910,7 @@
         \subsubsection{Zamenjava vrstnega reda integracije in povezane teme}
             
             \begin{definicija}
-                Naj bosta $(\Omega', \F)$ in $(\Omega', \F')$ merljiva prostora. 
+                Naj bosta $(\Omega, \F)$ in $(\Omega', \F')$ merljiva prostora. 
                 $$
                     \F \otimes \F' := \sigma_{\Omega \times \Omega'}(\{A \times A' \mid (A, A') in \F \times \F'\})
                 $$
@@ -975,14 +980,16 @@
             \end{definicija}
 
             \begin{zgled}
-                Naj bo $f:[0, \infty] \rightarrow [0, \infty]$ zvezna za katero velja $f(0) = 0$ ter naj bo na $(0, \infty)$ zvezno odvedljiva z $f'\geq 0$ na $(0, \infty)$. Naj bo $\nu$ $\sigma$-koncna mera na $\mathcal{B}_{[0, \infty]}.$ Potem je 
+                Naj bo $f:[0, \infty] \rightarrow [0, \infty]$ zvezna za katero velja $f(0) = 0$ ter naj bo na $(0, \infty)$ zvezno odvedljiva s $f'\geq 0$ na $(0, \infty)$. Naj bo $\nu$ $\sigma$-koncna mera na $\mathcal{B}_{[0, \infty]}.$ Potem je 
                 \begin{align*}
                     \int f d\nu = \int \int_{0}^x f'(t)dt \nu(dx) &= \int \int_{(0, x)}f'(t)\mathcal{L}(dt)\nu(dx) = \\
                     &=\int \int f'(t)\mathds{1}_{(0, x)}(t)\mathcal{L}(dt)\nu(dx)\\
-                    &= \int \int f'(t)\mathds{1}_{(0, x)}(t)\nu(dx)\mathcal{L}(dt) \\
+                    (Tonelli) &= \int \int f'(t)\mathds{1}_{(0, x)}(t)\nu(dx)\mathcal{L}(dt) \\
                     &= \int_{(0, \infty)}f'(t)\int \mathds{1}_{(t, \infty)}(x)\nu(dx)\mathcal{L}(dt) \\
-                    &= \int_{(0, \infty)}f'(t)\nu(t, \infty)\mathcal{L}(dt).
+                    &= \int_{(0, \infty)}f'(t)\nu(t, \infty)\mathcal{L}(dt). \\
+                    &= \int_0^\infty f'(t)\nu(t, \infty)dt \\
                 \end{align*}
+                kot izlimititran Riemannov integral ce je $\nu((t, \infty)) < \infty \ \forall t\in(0, \infty)$.
             \end{zgled}
 
             \begin{trditev}
@@ -1003,7 +1010,7 @@
                 Naj bo $(\Omega, \F, \mu)$ prostor z mero in $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$, 
                 ki ima $\int fd\mu$ dobro definiran. Potem funkciji 
                 $$
-                    f \cdot \mu:= (\F \ni A \rightarrowtail \int_A f d\mu)
+                    f \cdot \mu:= (\F \ni A \mapsto \int_A f d\mu)
                 $$
                 pravimo nedoloceni integral $f$ proti $\mu$.
             \end{definicija}
@@ -1011,7 +1018,7 @@
             \begin{definicija}
                 Za dve meri $\mu$ in $\nu$ na merljivem prostoru $(\Omega, \F)$ je:
                 \begin{enumerate}
-                    \item $\mu << \nu \iff$ $\nu$ je absolutno zvezna glede na $\mu$ $\iff$ $\forall A \in \F$ za katerega je $\nu(A) = 0$ je tudi $\mu(A) = 0$. 
+                    \item $\mu << \nu \iff$ $\mu$ je absolutno zvezna glede na $\nu$ $\iff$ $\forall A \in \F$ za katerega je $\nu(A) = 0$ je tudi $\mu(A) = 0$. 
                     \item $\mu \sim \nu$ $\iff$ $\mu$ je ekvivalentna $\nu$ $\iff$ $\nu << \mu$ in $\mu << \nu.$
                 \end{enumerate}
             \end{definicija}
@@ -1022,12 +1029,91 @@
                 $$
                     \int g d(f \cdot \mu) = \int gf d\mu.
                 $$
-                Pri cemer je leva stran dobro definirana $\iff$ je to res za desno stran in to za $\forall g \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$.
+                Pri cemer je leva stran dobro definirana $\iff$ je to res za desno stran in to za $\forall g \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$. V tem primeru (sociativnost nedolocene integracije) je $g \cdot (f \cdot \mu) = (gf)\cdot \mu$. Ce je $f>0$ skoraj povsod glede na $\mu$ potem je $f\cdot\mu \sim \mu$.
             \end{trditev}
             
-            \begin{opomba}
-                Kadar sta integrala dobro definirana je $g \cdot (f \cdot \mu) = (gf)\cdot \mu$ (asociativnost nedolocene integracije).
-                Ce je $f>0$ skoraj povsod glede na $\mu$ potem je $f\cdot\mu \sim \mu$.
-            \end{opomba}
+            \begin{proof}
+                Dokaz v skripti (stran 23).
+            \end{proof}
+
+
+            \begin{zgled}
+                Naj bo $G: \R\rightarrow\R$ narascajoca in zvezno odvedljiva. Potem za realne $a \leq b$ velja $(G'\cdot\mathcal{L})((a, b]) = \int_{(a, b]}G'd\mathcal{L} = \int_a^b G'(x)dx = G(b) - G(a)$. Po definiciji je torej $G'\cdot\mathcal{L} = dG.$ in $\int gdG = \int gd(G'\cdot\mathcal{L}) = \int gG'd\mathcal{L}$ za $\forall g \in \mathcal{B}_\R\backslash\mathcal{B}_{[-\infty, \infty]}$ za katere je $\int gG'd\mathcal{L}$ dobro definiran.
+            \end{zgled}
+
+            \begin{trditev}
+                Naj bo $(X, \A, \mu)$ prostor z mero in $\{f, g\} \subset \A\backslash\B_{[-\infty, \infty]}.$
+                \begin{enumerate}
+                    \item Naj bo $\int_{\{f > g\}}f^+d\mu \vee \int_{\{f > g\}}g^-d\mu < \infty$ in $\int_{\{f > g\}}fd\mu \leq \int_{\{f > g\}}gd\mu < \infty$. Potem je $f \leq g$ s.p.-$\mu$.
+                    \item Naj bo $\mu$-koncna, $\int fd\mu$ in $\int gd\mu$  dobro definirana in naj bo $\int_{A}fd\mu \leq \int_{A}gd\mu \ \forall A \in \A$. Potem je $f \leq g$ s.p.-$\mu$.
+                \end{enumerate}
+            \end{trditev}
+
+            \begin{proof}
+                Brez dokaza.
+            \end{proof}
+
+            \begin{posledica}
+                Naj bo $(X, \A, \mu)$ prostor z mero in $\{f, g\} \subset \A\backslash\B_{[-\infty, \infty]}.$ Denimo, da je $(\star)$ $\int fd\mu = \int gd\mu$ za $\forall A \in \A$, pri cemer sta $\int$ dobro definirana. Ce je 
+                \begin{itemize}
+                    \item $f$ ali $g$ $\mu$-integrabilna (in torej obe $\mu$-integrabilni) ali 
+                    \item $\mu$ je $\sigma$-koncna,
+                \end{itemize}
+                je $f = g$ s.p.-$\mu$. \\
+                Nadalje v primeru $\{f, g\} \subset \Le^1(\mu)$ je namesto $(\star)$ dovolj zahtevati $\int_Afd\mu = \int_Agd\mu \ \forall A \in \Pi\cup\{X\}$. za nek $\pi$-sistem $\Pi$, ki generira $\A$. 
+            \end{posledica}
+
+            \begin{proof}
+                
+            \end{proof}
+
+            \begin{izrek}(Radon-Nikodyn)
+                Naj bo $(\Omega, \F)$ merljiv prostor in $\mu$ ter $\nu$ $\sigma$-koncni meri na njem in $\mu << \nu$. Potem obstaja $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]} \ni \mu = f\cdot\nu$. Nadalje je $f>0$ s.p-$\mu$. Taka funkcija je dolocena s.p.-$\nu$ natancno. 
+            \end{izrek}
+
+            \begin{proof}
+                Dokaz enolicnosti:\\
+                Ce imamo $\{f_1, f_2\} \subset \F\backslash\mathcal{B}_{[0, \infty)}, f_1\cdot\nu = \mu = f_2\cdot\nu$, potem iz prejsnje posledice sledi $f_1 = f_2$ s.p-$\nu$ \\
+                Dokaz $f>0$ s.p-$\mu$: \\
+                $\mu(\{f = 0\}) = (f\cdot\nu)(\{f = 0\}) = \int_{\{f = 0\}}fd\nu = \int\underbrace{\mathds{1}_{\{f = 0\}}}_{=0}d\nu = 0$ Torej je $f>0$ s.p-$\mu$. 
+            \end{proof}
+
+            \begin{definicija}
+                Vsaki funkciji $f$ iz izreka pravimo Radon-Nikodynov odvod $\mu$ glede na $\nu$ in jo oznacimo z $\frac{d\mu}{d\nu}$.
+            \end{definicija}
+
+            \begin{posledica}
+                Naj bodo $\mu, \nu, \lambda$ $\sigma$-koncne mere na $\sigma$-algebri $\F$ in $\mu << \nu << \lambda$. Potem je $\frac{d\mu}{d\lambda} = \frac{d\mu}{d\nu}\frac{d\nu}{d\lambda}$ s.p-$\lambda$. Posebej: $\mu \sim \nu \Rightarrow \frac{d\mu}{d\nu}\frac{d\nu}{d\mu} = 1$ s.p-$\mu$ in s.p-$\nu$.
+            \end{posledica}
+
+            \begin{proof}
+                $$
+                \left(\frac{d\mu}{d\nu}\frac{d\nu}{d\lambda}\right)\cdot\lambda = 
+                \frac{d\mu}{d\nu}\cdot\left(\underbrace{\frac{d\nu}{d\lambda}\cdot\lambda}_{=\nu}\right) =
+                \frac{d\mu}{d\nu}\cdot\nu = \mu
+                $$
+                Torej je $\frac{d\mu}{d\nu}\frac{d\nu}{d\lambda} = \frac{d\mu}{d\lambda}$ s.p-$\lambda$. Ce je $\mu \sim \nu$ lahko v enakosti vzamemo $\lambda = \mu$, potem je $\frac{d\mu}{d\nu}\frac{d\nu}{d\mu} = \frac{d\mu}{d\mu} = 1$ s.p-$\mu$ in s.p-$\nu$.
+            \end{proof}
+
+        \subsubsection{L-prostori in integralske neenakosti}
+            \begin{definicija}
+                Naj bo $(\Omega, \F, \mu)$ prostor z mero in $p\in[1, \infty).$ Za $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$ definiramo
+                $$
+                    ||f||_{p_\mu} := \left(\int |f|^pd\mu\right)^{\frac{1}{p}}
+                $$
+                in vpeljemo $ \mathcal{L}^p(\mu) := \{f \in \F\backslash\mathcal{B}_{\R} \mid ||f||_{p_\mu} < \infty\}.$
+                Dodatno definiramo za $f \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$
+                $$
+                    ||f||_{\infty_\mu} := \inf\{M \in [0, \infty] \mid |f| < M \ s.p.-\mu\}
+                $$
+                In postavimo $\mathcal{L}^\infty(\mu) := \{f \in \F\backslash\mathcal{B}_{\R} \mid ||f||_{\infty_\mu} < \infty\}.$ \\
+                Za $p\in[1, \infty]$ in za zaporedje $(f_n)_{n\in\N_0}$ v $\mathcal{L}^p(\mu)$ pravimo, da 
+                $$
+                f_n \xrightarrow{n \rightarrow \infty}{} f_0 \ \text{v} \ \Le^p(\mu) \iff ||f_n - f_0||_{p_\mu} \xrightarrow{n \rightarrow \infty}{} 0.
+                $$
+                V tem primeru pravimo, da je $f_0$ limita $(f_n)_{n\in\N}$ v $\mathcal{L}^p(\mu)$ in pisemo $f_0 = \lim_{n\rightarrow\infty}f_n$ v $\mathcal{L}^p(\mu)$.
+                
+
+            \end{definicija}
 
 \end{document}
