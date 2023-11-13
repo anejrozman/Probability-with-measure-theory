@@ -1191,18 +1191,57 @@
                 P\left[f(X)\right] = P_X\left[f\right]
             $$
             Pri cemer je upanje na levi dobro definirano $\iff$ je to res za upanje na desni.
-        \end{trditev}
+        
 
-        Ce je $X$ slucanja spremenljivka, potem je $F_X$ zvezna z desne in narascajoca $\lim_{-\infty}F_X = 0$, $\lim_{+\infty}F_X = 1$ in $P_X = dF_X$.
-        Ce je $X$ diskretna slucajna spremenljivka, potem $\exists$ najmanjsa (glede na inkluzijo) podmnozica $C \subset \R$ za katero je $P(X \in C) = 1$. Oznacimo jo z $\text{supp}(X)$ in ji pravimo podpora X. Naprej, za $f \in \B_{\R}\backslash\B_{[-\infty, \infty]}$ je 
-        $$
-        P[f(X)] = \sum_{x \in \text{supp}(X)}f(x)P(X = x).
-        $$
-        Brz ko je vsaj ena od vrst 
-        $$
-        \sum_{x \in \text{supp}(X)}f(x)^+P(X = x) in \sum_{x \in \text{supp}(X)}f(x)^-P(X = x)
-        $$
-        koncna (in tedaj, in samo tedaj, je $P[f(X)]$ dobro definiran).
+        Ce je $X$ slucanja spremenljivka, potem je $F_X$ zvezna z desne in narascajoca $\lim_   {-\infty}F_X = 0$, $\lim_{+\infty}F_X = 1$ in $P_X = dF_X$.
+        Ce je $X$ diskretna slucajna spremenljivka, potem $\exists$ najmanjsa (glede na inkluzijo) podmnozica $C \subset \R$ za katero je $P(X \in C) = 1$. Oznacimo jo z $\text{supp}(X)$ in ji pravimo podpora X. Naprej, za $f \in \B_{\R}\backslash\B_  {[-\infty, \infty]}$ je 
+            $$
+            P[f(X)] = \sum_{x \in \text{supp}(X)}f(x)P(X = x).
+            $$
+            Brz ko je vsaj ena od vrst 
+            $$
+        \sum_{x \in \text{supp}(X)}f(x)^+P(X = x) \ \ \text{in} \sum_{x \in \text{supp}(X)}f(x) ^-P(X = x)
+            $$
+            koncna (in tedaj, in samo tedaj, je $P[f(X)]$ dobro definiran).
+        Ce je $X$ absolutno zvezna slucajna spremenljivka, potem je $X$ zvezna in $\exists$ s.p.-$\Le$ funkcija $f \in \B_\R\backslash\B_{[0, \infty]}$ da je $P_X = f\Le$, namrec $f=\frac{dP_X}{d\Le}$ s.p.-$\Le$, ki mu recemo Radon-Nikodym gostota $X$ in oznacimo z   $f_X$, naprej za $g\in \B_\R\backslash\B_{[-\infty, \infty]}$ je
+            $$
+                P[g(X)] = \int gf_Xd\Le = (f_X \cdot \Le)[g],
+            $$
+        pri cemer je upanje dobro definirano $\iff$ je $\int g^+f_Xd\Le$ in $\int g^-f_Xd\Le <  \infty$. 
+        Koncno za slucajno spremenljivko $X$ je $X$ absolutno zvezna $\iff$ $(\exists f \in \B_R\backslash\B_{[0, \infty]}, \ \text{da je} \ P(X\leq u) = \int_{(-\infty, u]}fd\Le \ \forall u \in \R) \iff$ $(\exists f\in\B_\R\backslash\B_{[0, \infty]}, \ \text{da je} \ P(X \in A) = \int_Afd\Le \forall A\in \Pi \cup \{\R\})$, kjer je $\Pi$     $\pi$-sistem, ki zadosta $\sigma_\R(\Pi) = \B_\R$.
+            
+        \end{trditev}	
 
+        \begin{proof}
+            \begin{enumerate}
+                \item Za slucajno spremenljivko $X$ je $P_X = dF_X$. \\
+                 $P_X$ in $dF_X$ sta vejretnostni meri in $P_X((-\infty, u]) = P(X \in (-\infty, u]) = P(X \leq u) = F_X(u) = dF_X((-\infty, u]) \forall u \in \R$ in $\sigma_\R(\{(-\infty, u] \mid u \in \R\}) = \B_\R$.Torej po trditvi 1.50 sledi $P_X = dF_X$.
+                
+                \item $X$ absolutno zvezna $\Rightarrow$ $X$ zvezna. \\
+                $F_X$ je zvezna z desne (nasploh) \\
+                $F_X(u) = P(X \leq u) = P(X \in (-\infty, u]) = P_X((-\infty, u]) =$ (absolutna zveznost) = $\int_{(-\infty, u]f_xd\Le} \forall x \in \R \Rightarrow F_X(x^-) = \lim_{y\uparrow x}F_X(y) = \lim_{y\uparrow x}\int_{(-\infty, y]}f_Xd\Le =$ (monotona konvergenca) $= \int_{(-\infty, x)}f_Xd\Le = \int_{(-\infty, x]}f_Xd\Le = F_X(x) \forall x \in \R \Rightarrow F_X$ zvezna z leve$ \Rightarrow F_X$ zvezna.
+
+                \item Zadnji dve ekvivalenci drzita, ker \\
+                \begin{itemize}
+                    \item $\int_{(-\infty, u]}fd\Le = P(X \leq u)$ v limiti za $u \uparrow \infty$ da $\int fd\Le = 1$ in 
+                    \item $P_X = f \cdot \Le$ na $\Pi \cup \{\R\} \Rightarrow$ (trditev 1.50) $P_X = f \cdot \Le \Rightarrow P_X << \Le$ in $f_X = f s.p-\Le$.
+                    \item Ce je $X$ absolutno zvezna, potem je $P(X\in A) = P_X(A) = (f_X\Le)(A) = \int_Afd\Le \forall A \in \B_\R.$
+                \end{itemize}
+
+                      
+            \end{enumerate}
+        \end{proof}
+
+        \begin{definicija}
+            Zadrzimo notacijo in terminologijo za gostote in za diskretno slucajno spremenljivko $X$ zadrzimo notacijo supp$(X)$ za podporo $X$ in pravimo 
+            $$
+                p_X := \text{supp}(X)\ni a \mapsto P(X = a)
+            $$
+            verjetnostna mera funkcije $X$.
+        \end{definicija}
+
+        \begin{zgled}
+            Naj bo $p \in (0, 1]$ in vpeljimo $\text{geom}_\N(p):= (\N \ni k \mapsto p(1-p)^{k-1})$ (Geometrijski zakon na $\N$ s parametrom uspeha $p$). $X$ je diskretna slucajna spremenljivka in $P[X] = \text{geom}_\N(p)[id_\N] = \sum_{k\in\N}kP(X=k) = \sum_{k\in\N}kp(1-p)^{k-1} = p^{-1}.$
+        \end{zgled}
 
 \end{document}
