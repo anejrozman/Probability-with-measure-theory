@@ -1116,4 +1116,93 @@
 
             \end{definicija}
 
+            \begin{trditev}
+                Ce je $\mu$-koncna mera in $\{p, q\}\subset[1, \infty], p \leq q,$ potem je $\mathcal{L}^q(\mu) \subset \mathcal{L}^p(\mu)$
+            \end{trditev}
+
+            \begin{proof}
+                Najprej za $q = \infty$; BSS $p < \infty$.
+                $$
+                    f \in \Le^q(\mu) \Rightarrow |f| \leq ||f||_\infty < \infty s.p.-\mu \ \text{in torej} \\
+                    ||f||_p^p = \int |f|^p d\mu \leq \int ||f||_\infty^p d\mu = ||f||_\infty^p \int 1 d\mu \\
+                    = ||f||_\infty^p \cdot [masa \ \mu] < \infty \Rightarrow f \in \Le^q(\mu).
+                $$
+
+                Naj bo sedaj $q < \infty$. Potem je za $f \in \Le^q(\mu)$, 
+                $$
+                    ||f||_p^p = \int|f|^p = \int_{\{|f| \geq  1\}} |f|^p d\mu + \int_{\{|f| < 1\}} |f|^p d\mu \leq \\
+                    \leq \int_{\{|f| \geq 1\}}|f|^q d\mu + 1\mu(|f|<1) \leq \int|f|^qd\mu = ||f||_q^q < \infty.\\
+                    Rightarrow f \in \Le^p(\mu).
+                $$
+            \end{proof}
+
+            \begin{izrek}
+                Naj bo $(\Omega, \F, \mu)$ prostor z mero in $\{f, g\} \subset \F\backslash\mathcal{B}_{[-\infty, \infty]}$. Veljajo slednje neenakosti:
+                \begin{enumerate}
+                    \item Neenakost markova: $\int_{\{f \geq a\}}fd\mu \geq a\mu(f\geq a)$ za $\forall a \in [-\infty, \infty]$.
+                    \item Minkowski: $ || f + g||_p \leq ||f||_p + ||g||_p$ za $\forall p \in [1, \infty]$.
+                    \item Hölder: $||fg||_2 \leq ||f||_p||g||_q$ za $\forall p, q \in [1, \infty]$ za katere velja $\frac{1}{p} + \frac{1}{q} = 1$. \\
+                    Poseben pirmer je $p = q = 2$ (Cauchy-Schwarzova neenakost)
+                    \item Jensen: Naj bo $\mu$ verjetnostna, $f\in\Le^1(\mu)$ in naj $\phi: I \rightarrow \R$ konveksna ($I$ je odprt interval na $\R$) za katero velja $\mathcal{Z}_f \subset I.$ Potem je $\emptyset \in \B_I\backslash\B_\R$, $\int(\phi\circ f)^-d\mu < \infty$, $\int fd\mu \in I$ in 
+                    $$
+                        \int \phi\circ fd\mu \geq \phi\left(\int fd\mu\right).
+                    $$
+                \end{enumerate}
+            \end{izrek}
+            Naprej , za vse $p\in[1, \infty]$ je $||\cdot||_p$ seminorma na realnem linearnem prostoru $\Le^p(\mu)$. $||\cdot||_p$-limita zaporedja v $\Le^p(\mu)$, ce obstaja, je enolicna s.p-$\mu$, obstaja pa $\iff$ je to zaporedje Cauchijevo v $||\cdot||_p.$ Koncno je $\left<\cdot, \cdot\right>$ skalarni semiprodukt na $\Le^q(\mu)$, ki je poln prostor.
+            \begin{opomba}
+                Semi-norma in semi-produkt zato, ker:
+                $$
+                    \left(\int fd\mu = 0 \& f \geq 0\right) \Rightarrow \left(f = 0 s.p-\mu \ [\text{ne nujno povsod}]\right)
+                $$
+                Ce preidemo na ekvivalencne razrede za enakost s.p-$\mu$ ($f\sim g \iff \mu(f\neq q) = 0 \ oz. f=g \ s.p-\mu$) dobimo prostore $\Le^p(\mu), p\in[1, \infty]$, ki so Banachovi, 
+                $\Le^2(\mu)$ pa Hilbertov.
+            \end{opomba}
+
+\section{Verjetnost (kot normalizirana mera)}  
+    \subsection{Onsnovni pojmi}
+        \begin{definicija}(Pojmi vejretnostnega prostora)
+            \begin{enumerate}
+                \item Verjentnostni prostor je prostor z mero $(\Omega, \F, P)$ kjer je $P$ verjetnostna mera.
+                \item $A$ je $P$-skoraj gotovo ($P$-s.g.) $\iff$ $A\in \F$ in $P(A) = 1$.
+                \item $P[X] = \int XdP$ je pricakovana vrednost $X$ pod $P$, kadar ima ta izraz pomen ($X \in \F\backslash\mathcal{B}_{[-\infty, \infty]}$).
+                \item Za merljiv prostor $(E, \Sigma)$ pravimo elementom $\F\backslash\Sigma$ slucajni elementi z vrednostmi v $(E, \Sigma)$; posebej pravimo elementom $\F\backslash\mathcal{B}_{[-\infty, \infty]}$ slucajne spremenljivke.
+                \item Za slucajni element  $X$ (z vrednostmi v $(E, \Sigma)$) pravimo $X*P = P_X = P\circ X^{-1}$ zakon $X$ (pod $P$ glede na $\Sigma$).
+                \item Dva slucajna elementa z vrednostmi v istem merljivem prostoru (lahko definirana na razlicnih verjentnostnih prostorih) sta enako porazdeljena $\iff$ imata isti zakon.
+                \item Za slucajno spremenljivko $X$:
+                    \begin{itemize}
+                        \item uvedemo $F_X:\R\rightarrow[0, 1] F_X(\omega):= P(X\leq\omega)$ za $\omega \in \R$ porazdelitveno funkcijo.
+                        \item pravimo da je $X$ diskretna (oz. absolutno zvezna) $\iff$ $\exists$ stevna podmnozica $C \subset \R$ da je $P(X\in C) = 1$ (oz. $P_X << \Le, F_X$ je zvezna).
+                        \item Bivarianten slucajen vektor $(X, Y)$ je element $\F\backslash\mathcal{B}_{\R^2}^2$ (splosen slucajen vektor definiran analogno) absolutno zvezen $\iff$ $P_{(X, Y)} << \Le'$. 
+                    \end{itemize}
+            \end{enumerate}
+        \end{definicija}
+
+        \begin{zgled}
+            $([0, 1], \B_{[0, 1]}, \Le_{[0, 1]})$ je vejrjetnostni prostor in $id_{[0, 1]}$ je absolutno zvezna slucajna spremenljivka na njem.
+        \end{zgled}
+        \begin{proof}
+            $\Le_{[0, 1]}(id_{[0, 1]}\in A) = \Le_{[0, 1]}(A \cap [0, 1]) - \Le(A \cap [0, 1]) = (\mathds{1}_{[0, 1]}\Le)(A)$ za $A \in \B_\R$. $\Rightarrow id_{[0, 1]} * \Le_{[0, 1]} = \mathds{1}_{[0, 1]}\Le << \Le$.
+        \end{proof}
+
+        \begin{trditev}
+            Naj bo $X$ slucajen element z vrednostmi v $(E, \Sigma)$ na verjetnostnem prostoru $(\Omega, \F, P)$ in $f\in\Sigma\backslash\B_{[-\infty, \infty]}$. Potem je 
+            $$
+                P\left[f(X)\right] = P_X\left[f\right]
+            $$
+            Pri cemer je upanje na levi dobro definirano $\iff$ je to res za upanje na desni.
+        \end{trditev}
+
+        Ce je $X$ slucanja spremenljivka, potem je $F_X$ zvezna z desne in narascajoca $\lim_{-\infty}F_X = 0$, $\lim_{+\infty}F_X = 1$ in $P_X = dF_X$.
+        Ce je $X$ diskretna slucajna spremenljivka, potem $\exists$ najmanjsa (glede na inkluzijo) podmnozica $C \subset \R$ za katero je $P(X \in C) = 1$. Oznacimo jo z $\text{supp}(X)$ in ji pravimo podpora X. Naprej, za $f \in \B_{\R}\backslash\B_{[-\infty, \infty]}$ je 
+        $$
+        P[f(X)] = \sum_{x \in \text{supp}(X)}f(x)P(X = x).
+        $$
+        Brz ko je vsaj ena od vrst 
+        $$
+        \sum_{x \in \text{supp}(X)}f(x)^+P(X = x) in \sum_{x \in \text{supp}(X)}f(x)^-P(X = x)
+        $$
+        koncna (in tedaj, in samo tedaj, je $P[f(X)]$ dobro definiran).
+
+
 \end{document}
