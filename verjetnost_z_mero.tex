@@ -1244,4 +1244,51 @@
             Naj bo $p \in (0, 1]$ in vpeljimo $\text{geom}_\N(p):= (\N \ni k \mapsto p(1-p)^{k-1})$ (Geometrijski zakon na $\N$ s parametrom uspeha $p$). $X$ je diskretna slucajna spremenljivka in $P[X] = \text{geom}_\N(p)[id_\N] = \sum_{k\in\N}kP(X=k) = \sum_{k\in\N}kp(1-p)^{k-1} = p^{-1}.$
         \end{zgled}
 
+        \begin{trditev}.
+            Naj bo $(\Omega, \F, P)$ verjetnostni prostor. Ce je $X$ slucajna spemenjljivka, potem je $F_X \in \B/\B_{[0,1]}$ in 
+            $$
+                F_X(x) \sim_{P} \Le_{[0, 1]} \iff \ \text{$X$ je zvezna.}
+            $$
+            Obratno naj bo $U \sim_{P} \Le_{[0,1]}$ in $F:\R \rightarrow [0, 1]$ porazdelitvena funckija. Postavimo 
+            $$
+                F^\leftarrow(u):= \inf\{v \in \R \mid F(v) > u\}, u\in(0, 1).
+            $$
+            Potem je $F^\leftarrow(U)\sim_{P} dF$ in $F^\leftarrow \in \B_{(0, 1)}/\B_{\R}$.
+            
+            \noindent Nadalje, za $u \in (0, 1)$ in $u\in \R$ je $u<F(U) \Rightarrow F^{\leftarrow} \leq u \Rightarrow u \leq F(u).$
+            Torej je za $u\in\R$ $\{U\leq F(u)\} \subset \{F^{\leftarrow(U)\leq u}\} \subset \{U\leq F(u)\}$ 
+            $P(U< F(u)) \leq P(F^{\leftarrow}(U)\leq u) \leq P(U \leq F(u))$ Iz tega pa sledi, da je $P(F^{\leftarrow}(U) \leq u) = F(u) \Rightarrow F^{\leftarrow}(U)$ ima porazdelitveno funkcijo $F$.
+        \end{trditev}
+
+        \begin{proof}
+            Kasneje...
+        \end{proof}
+
+        \begin{definicija}
+            Naj bo $(\Omega, \F, P)$ verjetnostni prostor in $(X_n)_{n\in\N}$ zaporedje s.s. ter $X$ slucajna spremenljivka. Pravimo, da je $(X_n)_{n\in\N}$ konvergentna proti $X$ v $P$-verjetnosti kadar za vsak $\epsilon \in (0, \infty)$ velja
+            $$
+                P(|X_n - X| \geq \epsilon) \xrightarrow{n\rightarrow\infty} 0.
+            $$
+        \end{definicija}
+
+        \begin{trditev}
+            Naj bo $(\Omega, \F, P)$ verjetnostni prostor in $(X_n)_{n\in\N}$ zaporedje s.s. ter $X$ slucajna spremenljivka ne nujno v njem. Tedaj velja, da ko
+            $$
+                X_n \xrightarrow{n\rightarrow\infty} X \ v \ \Le^p(P) \ za \ nek \ p \in [0, \infty] \ ali, \\
+                X_n \xrightarrow{n\rightarrow\infty} X s.g.-P.
+            $$
+            Potem $X_n \xrightarrow{n\rightarrow\infty} X \ v \ P$-verjetnosti.
+        \end{trditev}
+
+        \begin{proof}
+            Locimo moznosti:
+            \begin{enumerate}
+                \item p < $\infty$: Tedaj $||X_n - X||_P^p  = \int |X_n - X|^p dP \geq \epsilon^pP(|X_n - X|^p \geq \epsilon)$ Kjer pri neenacaju uporabimo neenakost Markova. 
+                \item p = $\infty$: $||X_n - X||_\infty \geq |X_n - X|$ s.g.-$P$.
+            \end{enumerate}
+        \end{proof}
+
+
+
+
 \end{document}
